@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/dashboard', (req, res) => {
-  res.render('users/dashboard', {layout : dashboard_layout});
+  res.render('users/dashboard', {layout : dashboard_layout, title : "Masterclasses | Managepie.com"});
 });
 
 router.get('/logout', (req, res) => {
