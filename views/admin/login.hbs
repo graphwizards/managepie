@@ -1,0 +1,65 @@
+
+  <div class="main-container  d-flex flex-wrap align-content-center h-100 w-100 justify-content-center">
+     
+
+
+  <div class="content-container " style="width: 20%;">
+      <div class="w-100 py-5 d-flex justify-content-center">
+        <img src="./images/logo-06.svg" class="logo"   alt="">
+        
+      </div>
+      
+      <div class="ui basic  segment ">
+          <div class="ui active inverted dimmer">
+                <div class="ui text loader">Loading</div>
+            </div>
+         <div class="ui one column stackable grid  ">
+             <div class="middle aligned  column">
+                  <form action="/admin/dashboard" class=" ui form">
+             
+               {{!-- username --}}
+               <div class="ui field">
+                     <div class="ui left icon fluid input my-2">
+                <input type="text" placeholder="Username">
+                <i class="user icon"></i>
+                </div>
+                </div>
+                
+                {{!-- password --}}
+                <div class="ui field">
+                      <div class="ui left icon fluid input my-2">
+                <input type="text" placeholder="Password">
+                <i class="lock   alternate icon"></i>
+                </div>
+                </div>
+                {{!-- button --}}
+                <button class="fluid ui vertical animated orange  button  ">
+                    <div class="visible content">
+                    LOGIN
+                    </div>
+                    <div class="hidden content">
+                        <i class="icon long arrow alternate right"></i>
+                    </div>
+                </button>
+                 
+               
+
+           
+          </form>
+             </div>
+         </div>
+      </div>
+      <div class="error-container w-100   d-flex flex-wrap justify-content-center">
+     
+      </div>
+  </div>
+     
+  </div>
+  <div class="fixed-bottom py-3 text-center  container">
+    <p class="blockquote-footer"> &copy; <?php echo date("Y"); ?> | <a href="https://graphwizards.com/" class="primary-link" target="Blank">Graphwizards</a> Pvt. Ltd. Patiala <a href="https://graphwizards.com/contact" class="primary-link" target="Blank">Contact us</a> </p>
+  </div>
+<script>
+  $(document).ready(function(){
+    $('.segment .dimmer').fadeOut(300);
+  });
+</script>
