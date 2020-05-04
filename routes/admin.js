@@ -86,13 +86,13 @@ router.post('/sendsms', (req, res) => {
  
  
     var validOptions = { apikey: 'eQd2legWgy8-rGnxk289ozJm0FIgTY1onkYsiWmMd2' };
-    var tl = require('textlocal')(validOptions);
+    var tl = require('TextLocal')(validOptions);
     tl.sendSMS('8059112897', 'this is a test message', 'GRAPHW', function (err, data) {
       if (err) {
-         res.json(err);
+         res.send(err);
       }
       else{
-         res.json(data);
+         res.send(data);
       }
     });   
 
