@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const {check, validationResult} = require('express-validator');
 const user = require('./../models/users');
 
+const admin_layout = "layouts/admin-dashboard";
 // middleware
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
@@ -14,6 +15,12 @@ router.use(bodyParser.urlencoded({extended: true}));
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render('admin/login', {title : 'Admin Dashboard | ManagePie'});
+});
+
+
+router.get('/dashboard', (req, res) => {
+  res.render('admin/dashboard', { layout : admin_layout, title : "Administrator | managepie.com"});
+
 });
 
 
@@ -74,4 +81,20 @@ temp.save(function(err, result){
 });
 });
 
+
+router.post('/sendsms', (req, res) => {
+ 
+ 
+    var validOptions = { apikey: 'eQd2legWgy8-rGnxk289ozJm0FIgTY1onkYsiWmMd2' };
+    var tl = require('textlocal')(validOptions);
+    tl.sendSMS('8059112897', 'this is a test message', 'GRAPHW', function (err, data) {
+      if (err) {
+         res.json(err);
+      }
+      else{
+         res.json(data);
+      }
+    });   
+
+});
 module.exports = router;

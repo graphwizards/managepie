@@ -1,0 +1,243 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap-grid.css">
+    
+    <link rel="stylesheet" href="/stylesheets/semantic.css">
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="/javascripts/semantic.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://kit.fontawesome.com/f3f8e909be.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Income', 'Expenses', 'Profit'],
+          ['January',  1000,      400,     600],
+          ['Feburary',  1170,       1470,     -300],
+          ['March',  660,       1120,     500],
+          ['April',  1030,      540,     490]
+        ]);
+
+        var options = {
+           
+          'is3D':true,
+          colors: ['green' , 'red','orange'],
+          curveType: 'function',
+          pointSize: 9,
+          isStacked: true,
+            legend: 'none',
+            interpolateNulls: true,
+          dataOpacity: 0.3,
+          lineWidth: 3,
+          'chartArea': {'width': '90%', 'height': '85%'},
+               'legend': {'position': 'bottom'}
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+</head>
+
+<body class="bg-light">
+    
+    <!-- top navbar -->
+    <nav class="ui top fixed   menu mobile-nav shadow-sm ">
+        <div class="left menu">
+            <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
+                <i class="fas fa-bars"></i>
+            </a>
+            <a href="#" class="item header">Manage<span class=" text-primary">Pie</span></a>
+        </div>
+        <div class="right menu">
+            <div class="ui dropdown item">
+               <i class="fas fa-cog"></i>
+                <div class="menu">
+                    <a href="#" class="item"><i class="far fa-user"></i> Profile</a>
+                    <a href="#" class="item"><i class="fas fa-power-off"></i> Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- end of navbr -->
+
+
+    <!-- sidebar -->
+    <div class="ui sidebar  vertical menu sidebar-menu shadow-sm                " id="sidebar">
+        <div class="item  ">
+            <div class="header  py-3 pb-4">
+
+                <img class="ui centered small image" src="/images/logo-06.svg">
+
+            </div>
+            <div class="    item">
+                <div class="header text-primary">
+                 <i class="far fa-chart-bar mr-2"></i>   General
+
+                </div>
+                <div class=" menu pl-5 ">
+                    <a href="/users/dashboard" class="header item">
+                        <div>
+                            <!-- <i class="icon tachometer alternate average mr-3"></i>  -->
+                            Dashboard
+                        </div>
+
+                    </a>
+                    <a href="#" class="header item">
+                        <div>
+                            <!-- <i class="icon tachometer alternate average mr-3"></i>  -->
+                            Profile
+                        </div>
+                    </a>
+                    <a href="#" class="header item">
+                        <div>
+                            <!-- <i class="icon tachometer alternate average mr-3"></i>  -->
+                            Email
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="  item">
+                <div class="header text-primary">
+                  <i class="fas fa-user-plus mr-2"></i>  Administration
+                </div>
+                <div class=" menu pl-5">
+                    <a href="/users/students" class="header item">
+                        <div class="py-1">
+                            <!-- <i class="icon user mr-3"></i> -->
+                            Students
+                        </div>
+
+                    </a>
+
+                    <a href="#" class=" header item">
+                        <div class="py-1">
+                            <!-- <i class="icon users mr-3"></i> -->
+                            Faculty
+                        </div>
+                    </a>
+                    <a href="#" class="header item">
+                        <div class="py-1">
+                            <!-- <i class="icon user plus mr-3"></i> -->
+                            Staff
+                        </div>
+                    </a>
+                  
+                </div>
+            </div>
+
+            <div class="   item">
+                <div class="header text-primary">
+                  <i class="fas fa-file-invoice mr-2"></i> Accounts
+                </div>
+                <div class=" menu pl-5">
+                    <a href="#" class="header item">
+                        <div class="py-1">
+                            <!-- <i class="icon user mr-3"></i>  -->
+                            Student Fee
+                        </div>
+
+                    </a>
+
+                    <a href="#" class=" header item">
+                        <div class="py-1">
+                            <!-- <i class="icon rupee sign mr-3"></i> -->
+                            Sallery
+                        </div>
+                    </a>
+                    <a href="#" class=" header item">
+                        <div class="py-1">
+                            <!-- <i class="icon chart bar mr-3"></i> -->
+                            Expenses
+                        </div>
+                    </a>
+                    <a href="#" class="header item">
+                        <div class="py-1">
+                            <!-- <i class="icon chart line mr-3"></i> -->
+                            Profit
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="   item">
+                <div class="header text-primary">
+                 <i class="far fa-folder-open mr-2"></i>   More
+                </div>
+                <div class=" menu pl-5">
+                    <a href="#" class="header item">
+                        <div class="py-1">
+                            <!-- <i class="icon user mr-3"></i>  -->
+                            Courses
+                        </div>
+                    </a>
+
+                    <a href="#" class="header item">
+                        <div class="py-1">
+                            <!-- <i class="icon user mr-3"></i>  -->
+                            Subjects
+                        </div>
+                    </a>
+
+                    <a href="#" class="header   orange item">
+                        <div class="py-1">
+                            <!-- <i class="icon file al mr-3"></i>  -->
+                            Packages
+                        </div>
+                    </a>
+                    <a href="#" class="header   orange item">
+                        <div class="py-1">
+                            <!-- <i class="icon power mr-3"></i>  -->
+                            Queries
+                        </div>
+                    </a>
+                      <a href="#" class="header   orange item">
+                        <div class="py-1">
+                            <!-- <i class="icon power mr-3"></i>  -->
+                            Feedback
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- end of sidebar -->
+
+
+
+  
+      <div class="pusher">
+        <div class="main-content  ">
+  <div class="ui basic blurring segment">
+      <div class="ui active  inverted dimmer" id="dashboard-preloader">
+    <div class="ui text  loader">Loading</div>
+  </div>
+
+{{{body}}}
+
+
+
+  </div>
+
+         
+    </div>
+      </div>
+
+    <script src="/javascripts/custom.js"></script>
+</body>
+
+</html>
