@@ -43,7 +43,12 @@ const userScheman = mongoose.Schema({
         default : true,
          
     },
-    address : [{
+    premium: {
+        type : Boolean,
+        default : false,
+         
+    },
+    address :{
         city : {
             type : String,
             required : true,
@@ -56,7 +61,7 @@ const userScheman = mongoose.Schema({
             type : String,
             required : true,
         },
-    }],
+    },
     createDate : {
         type : Date,
         default : Date.now(),
