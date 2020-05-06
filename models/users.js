@@ -3,68 +3,73 @@ const mongoose = require('mongoose');
 
 // user schema
 const userScheman = mongoose.Schema({
-    fullName : {
-        type : String,
-        required : true,
+    fullName: {
+        type: String,
+        required: true,
     },
-    email : {
-        type : String,
-        required : true,
-        unique : true,
+    email: {
+        type: String,
+        required: true,
+        unique: true,
     },
-    instName : {
-        type : String,
-        required : true,
+    instName: {
+        type: String,
+        required: true,
     },
-    startDate : {
-        type : String,
-        default : " ",
+    startDate: {
+        type: String,
+         
     },
-    expiryDate : {
-        type : String,
-        default : " ",
+    expiryDate: {
+        type: String,
+        
     },
-    mobile : {
-        type : String,
-        required : true,
+    mobile: {
+        type: String,
+        required: true,
     },
-    
-   
-    password : {
-        type : String,
-        required : true,
+
+
+    password: {
+        type: String,
+        required: true,
     },
-    payment : {
-        type : Boolean,
-        default : false,
+    payment: {
+        type: Boolean,
+        default: false,
     },
     isActive: {
-        type : Boolean,
-        default : true,
-         
+        type: Boolean,
+        default: true,
+
     },
     premium: {
-        type : Boolean,
-        default : false,
-         
+        type: Boolean,
+        default: false,
+
     },
-    address :{
-        city : {
-            type : String,
-            required : true,
-        },
-        state : {
-            type : String,
-            required : true,
-        },
-        pincode : {
-            type : String,
-            required : true,
-        },
+    plan: {
+        type: String,
+        default: 'Demo',
+
     },
-    createDate : {
-        type : Date,
-        default : Date.now(),
+
+    city: {
+        type: String,
+        required: true,
+    },
+    state: {
+        type: String,
+        required: true,
+    },
+    pincode: {
+        type: String,
+        required: true,
+    },
+
+    createDate: {
+        type: Date,
+        default: Date.now(),
     },
 });
 

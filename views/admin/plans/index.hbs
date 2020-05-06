@@ -1,0 +1,109 @@
+<div class="ui stackable grid padded">
+    <div class="ui row m-0">
+<div class="ui sixteen wide column">
+    <div class="ui basic bg-white buttons shadow-sm">
+        <a href="#" class="ui button">
+            Download
+        </a>
+         
+    </div>
+</div>
+
+    </div>
+    <div class="ui row m-0">
+        
+    <div class="div sixteen wide column">
+        <h4 class="ui horizontal divider header">
+
+        Table
+    </h4>
+<div class="ui segment">
+    <div class="ui stackable grid">
+        <div class="ui divided row m-0">
+            <div class="ui ten wide column">
+  <table class="ui celled definition padded table">
+  <thead>
+    <tr>
+        <th> </th>
+     
+     <th>Status</th>
+    <th>Cost</th>
+    <th>Duration</th>
+    <th></th>
+  </tr></thead>
+  <tbody>
+      {{#each planData}}
+          
+     
+    <tr>
+      <td>
+        <h4 class="ui center aligned header"> {{this.name}} </h4>
+      </td>
+      
+      <td>  {{this.isActive}} </td>
+      <td>
+       ₹ {{this.cost}}
+      </td>
+      <td> 
+         {{this.duration}} year
+      </td>
+      <td>
+          <div class="ui pointing dropdown">
+              Action
+              <i class="icon dropdown"></i>
+              <div class="menu shadow">
+                  <a href="#" class="item">Edit</a>
+                  <a href="#" class="item">Delete</a>
+                  <a href="#" class="item">Dissable</a>
+              </div>
+          </div>
+      </td>
+    </tr>
+     {{/each}}
+  </tbody>
+ 
+</table>
+            </div>
+            <div class="ui six wide column">
+                <div class="ui orange segment px-5">
+                    <h5>Create Plan</h5>
+                    <div class="ui divider"></div>
+                    <form method="POST" action="/admin/plans/createPlan" class="ui form ">
+                        <div class="ui field">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" placeholder="Enter Plan Name">
+                        </div>
+                        <div class="ui field">
+                            <label for="name">Cost</label>
+                            <input type="text" name="cost" placeholder="Enter Plan Cost eg: 2999">
+                        </div>
+                        <div class="ui field">
+                            <label for="name">Duration</label>
+                            <select name="duration" id="duration" name="duration" class="ui dropdown">
+                                <option value=""> -- Select Plan Duration -- </option>
+                                <option value="demo">DEMO</option>
+                                <option value="1">1 Year</option>
+                                <option value="2">2 Year</option>
+                                <option value="3">3 Year</option>
+                                <option value="4">4 Year</option>
+                                <option value="5">5 Year</option>
+                                <option value="6">6 Year</option>
+                                <option value="7">7 Year</option>
+                                <option value="8">8 Year</option>
+                                <option value="9">9 Year</option>
+                                <option value="10">10 Year</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="ui fluid orange button">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+</div>
+    </div>
+    </div>
+</div>

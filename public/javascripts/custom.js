@@ -13,5 +13,7 @@ $(document).ready(function () {
         .sidebar('setting', 'transition', 'overlay')
         .sidebar('toggle')
       ;
+
+ 
     });
 });

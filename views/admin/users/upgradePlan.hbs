@@ -1,0 +1,135 @@
+ <div class="ui stackable grid padded ">
+     <div class="ui row m-0">
+    <div class="ui sixteen wide column h-100">
+    <div class="ui basic buttons bg-white shadow-sm">
+        <a href="#" class="ui button">Back</a>
+        <a href="#" class="ui button">Create New Plan</a>
+    </div>
+     </div>
+     
+     </div>
+     {{!-- second row --}}
+     <div class="ui row m-0">
+         <div class="ui sixteen wide column">
+           <div class="ui   divider  ">
+
+    
+    </div>
+    <div class="ui p-4  basic segment">
+        <div class="ui     stackable grid">
+            <div class="ui ten wide column">
+        <div class="ui fluid p-5 card">
+           <div class="content">
+                <div class="meta right floated text-right">
+          {{user.email}}
+          <br>
+          {{user.mobile}}
+      </div>
+      <div class="header">{{user.fullName}}</div>
+     
+      <div class="meta">{{user.instName}}</div>
+      <div class="ui divider"></div>
+      
+      <div class="description">
+         
+       <div class="ui relaxed   list">
+           <div class="item">
+                 <div class="meta mb-3">Detail</div>
+                 <span class="header">Address</span>
+                 <div class="description">
+                     {{user.city}} | {{user.pincode}}  | {{user.state}}
+                                      </div>
+           </div>
+
+             <div class="item">
+            <div class="header">Activate
+                {{#if user.isActive}}
+                <i class="fas fa-check ml-3"></i>
+                {{else}}
+                    
+                {{/if}}
+            </div>     
+            </div>
+           
+
+
+  <div class="item mt-4">
+        <div class="meta mb-3">Current Plan</div>
+    <div class="content">
+      <span  class="header">{{user.plan}}</span>
+      <div class="description">{{user.startDate}} - to - {{user.expiryDate}}</div>
+    </div>
+  </div>
+  
+  
+</div>
+      </div>
+    </div>
+  <div class="extra content">
+    <span class="left floated like">
+     <b>Crate Date</b> {{user.createDate}} 
+    </span>
+    
+  </div>
+        </div>
+      <div class="ui fluid card px-5 py-4">
+                    <div  class="card">
+                        <div class="content">
+                            
+                      <div class="meta mb-3">Choose Plan</div>
+                        <div class="ui header m-0">{{plan.name}}</div>
+                        <div class="description"> ₹{{plan.cost}} @{{this.duration}} years 
+                            <div>
+                                <div class="ui divider">
+                                  
+                                </div>
+                                <div class="ui relaxed   list">
+           <div class="item">
+                 <div class="meta mb-3">Detail</div>
+                 <span class="header">Address</span>
+                 <div class="description">
+                     {{user.city}} | {{user.pincode}}  | {{user.state}}
+                                      </div>
+           </div>
+
+             <div class="item">
+            <div class="header">Activate
+                {{#if user.isActive}}
+                <i class="fas fa-check ml-3"></i>
+                {{else}}
+                    
+                {{/if}}
+            </div>     
+            </div>
+           
+
+
+  <div class="item mt-4">
+        <div class="meta mb-3">Current Plan</div>
+    <div class="content">
+      <span  class="header">{{user.plan}}</span>
+      <div class="description">{{user.startDate}} - to - {{user.expiryDate}}</div>
+    </div>
+  </div>
+  
+  
+</div>
+                                 
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                                
+                                    
+                                </div>
+            </div>
+            <div class="ui six wide column">
+          
+              
+        
+        </div>
+
+    </div>
+         </div>
+  

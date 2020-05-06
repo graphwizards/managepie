@@ -1,3 +1,44 @@
+    <script type="text/javascript" src="/javascripts/loader.js"></script>
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Income', 'Expenses', 'Profit'],
+          ['Jan', 1000, 400, 200],
+          ['Feb', 1170, 460, 250],
+          ['Mar', 660, 1120, 300],
+          ['Apr', 200, 540, 350],
+          ['May', 10, 540, 350],
+          ['Jun', 300, 540, 350],
+          ['Jul', 100, 540, 350],
+          ['Aug', 40, 400, 200],
+          ['Sep', 30, 460, 250],
+          ['Oct', 1100, 1120, 300],
+          ['Nov', 700, 540, 350],
+          ['Dec', 200, 540, 350]
+          
+          
+        ]);
+
+        var options = {
+            colors: ['#FF6900' , '#FF3900','#C41E00'],
+          chart: {
+            title: 'Company Performance',
+          
+            subtitle: 'Income, Expenses and Profit Year : 2020',
+             
+            
+          }
+          
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
    <div class="ui grid stackable padded">
                 <!-- top icons row -->
                 <div class="row m-0">
@@ -178,10 +219,10 @@
                                <i class="fas fa-sync-alt"></i>
                             </button>
                             
-                            <div class="ui orange basic    ribbon label">Profit Chart</div>
+                            
                            
                           
-                    <div id="curve_chart" style="auto; height: 340px; " class="mt-2" ></div>
+                    <div id="columnchart_material" style="auto; height: 340px; " class="mt-2" ></div>
                     </div>
                     </div>
                     <!-- End of left container -->

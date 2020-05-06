@@ -3,6 +3,22 @@ var router = express.Router();
 
 // models
 const user = require('./../models/users');
+var minifyHTML = require('express-minify-html');
+
+
+  
+router.use(minifyHTML({
+  override:      true,
+  exception_url: false,
+  htmlMinifier: {
+      removeComments:            true,
+      collapseWhitespace:        true,
+      collapseBooleanAttributes: true,
+      removeAttributeQuotes:     true,
+      removeEmptyAttributes:     true,
+      minifyJS:                  true
+  }
+}));
 
 var dashboard_layout = "layouts/user-dashboard";
 /* GET users listing. */

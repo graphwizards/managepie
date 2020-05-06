@@ -10,43 +10,11 @@
     
     <link rel="stylesheet" href="/stylesheets/semantic.css">
  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="/javascripts/jquery-v03.min.js"></script>
     <script src="/javascripts/semantic.min.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="https://kit.fontawesome.com/f3f8e909be.js" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+    <script src="/javascripts/fontawasome.js" crossorigin="anonymous"></script>
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Month', 'Income', 'Expenses', 'Profit'],
-          ['January',  1000,      400,     600],
-          ['Feburary',  1170,       1470,     -300],
-          ['March',  660,       1120,     500],
-          ['April',  1030,      540,     490]
-        ]);
 
-        var options = {
-           
-          'is3D':true,
-          colors: ['green' , 'red','orange'],
-          curveType: 'function',
-          pointSize: 9,
-          isStacked: true,
-            legend: 'none',
-            interpolateNulls: true,
-          dataOpacity: 0.3,
-          lineWidth: 3,
-          'chartArea': {'width': '90%', 'height': '85%'},
-               'legend': {'position': 'bottom'}
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-      }
-    </script>
 </head>
 
 <body class="bg-light">

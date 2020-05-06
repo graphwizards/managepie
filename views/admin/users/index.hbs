@@ -1,274 +1,327 @@
+<script type="text/javascript" src="/javascripts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.setOnLoadCallback(drawChart);
  
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
+    function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Month', 'Income', 'Expenses', 'Profit'],
-          ['January',  1000,      400,     600],
-          ['Feburary',  1170,       1470,     -300],
-          ['March',  660,       1120,     500],
-          ['April',  1030,      540,     490]
+            ['Month', 'Total Users', 'Premium Users', 'Demo Users'],
+            ['Jan', 1000, 400, 200],
+            ['Feb', 1170, 460, 250],
+            ['Mar', 660, 1120, 300],
+            ['Apr', 200, 540, 350],
+            ['May', 10, 540, 350],
+            ['Jun', 300, 540, 350],
+            ['Jul', 100, 540, 350],
+            ['Aug', 40, 400, 200],
+            ['Sep', 30, 460, 250],
+            ['Oct', 1100, 1120, 300],
+            ['Nov', 700, 540, 350],
+            ['Dec', 200, 540, 350]
+            
+            
+
+
         ]);
 
         var options = {
-           
-          'is3D':true,
-          colors: ['green' , 'red','orange'],
-          curveType: 'function',
-          pointSize: 9,
-          isStacked: true,
-            legend: 'none',
-            interpolateNulls: true,
-          dataOpacity: 0.3,
-          lineWidth: 3,
-          'chartArea': {'width': '90%', 'height': '85%'},
-               'legend': {'position': 'bottom'}
+            legend: { position: 'none', alignment: 'start' },
+            colors: ['#FF6900', '#FF3900', '#C41E00'],
+
+            chart: {
+                title: 'Users Account Performance',
+
+                subtitle: 'Total users, Premium users, and Demo Users: 2020',
+
+
+            }
+
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
-        chart.draw(data, options);
-      }
-    </script>
-<div class="ui grid stackable padded">
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+</script>
+<div class="ui grid stackable padded  ">
     <div class="ui row m-0">
         <div class="ui sixteen wide column">
-          <div class="ui grid stackable">
-              <div class="ui row m-0">
-                  <div class="ui sixteen wide column">
-                      
-                      <div class="ui basic raised buttons bg-white">
-                          <div class="ui pointing dropdown button">
-                              <i class="fas fa-download mr-3"></i> Download
-                              <div class="ui   menu">
-                                  <a href="#" class="ui item">
-                                      <i class="far fa-file-excel mr-3"></i> CSV</a>
-                                  <a href="#" class="ui item">
-                                   <i class="far fa-file-pdf mr-3"></i>   PDF
-                                  </a>
-                              </div>
-                          </div>
-                          <a href="#" class="ui orange   button">
-                              <i class="fas fa-user-plus mr-3"></i> Add New
-                          </a>
-                      </div>
-                  </div>
-              </div>
-          </div>
+            <div class="ui grid stackable">
+                <div class="ui row m-0">
+                    <div class="ui sixteen wide column">
+
+                        <div class="ui basic raised buttons bg-white">
+                            <div class="ui pointing dropdown button">
+                                <i class="fas fa-download mr-3"></i> Download
+                                <div class="ui   menu">
+                                    <a href="#" class="ui item">
+                                        <i class="far fa-file-excel mr-3"></i> CSV</a>
+                                    <a href="#" class="ui item">
+                                        <i class="far fa-file-pdf mr-3"></i> PDF
+                                    </a>
+                                </div>
+                            </div>
+                            <a href="#" class="ui orange   button">
+
+
+                                <i class="fas fa-user-plus mr-3"></i> Add New
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
     <div class="ui row m-0">
         <div class="ui eleven wide column">
-        <div class="ui segment"></div>
-    </div>
-    <div class="ui five wide column">
-        <div class="ui inverted orange segment px-0">
-            <div class="ui header px-5">
-                <div class="content">
-                    <h4>Users Data</h4>
-                </div>
+            <div class="ui segment">
+                <div id="columnchart_material" style="width: 100%; height: 90%;"></div>
             </div>
-            <div class="ui divider"></div>
-            <div class="p-3 px-5">
-           <div class="ui two   equal width text-center divided grid">
-               <div class="ui row m-0">
-                    <div class="ui column">
-                    <h1 class="text-white display-4 m-0">{{totalUser}}</h1>
-                    <p class=" text-white font-weight-bold"><i class="far fa-user mr-2"></i> Total Users</p>
-               </div>
-                 <div class="ui column">
-                    <h1 class="text-white display-4 m-0">{{premiumAccount}}</h1>
-                    <p class=" text-white font-weight-bold"><i class="far fa-star mr-2"></i> Premium Users</p>
-                 
-               </div>
-               </div>
-             
-           </div>
+        </div>
+        <div class="ui five wide column">
+            <div class="ui inverted orange segment px-0">
+                <div class="ui header px-5">
+                    <div class="content">
+                        <h4>Users Data</h4>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="p-3 px-5">
+                    <div class="ui  equal width text-center internally celled grid">
+                        <div class="ui row m-0">
+                            <div class="ui eight wide column">
+                                <h1 class="text-white display-4 m-0">{{totalUser}}</h1>
+                                <p class=" text-white font-weight-bold"><i class="far fa-user mr-2"></i> Total Users</p>
+                            </div>
+                            <div class="ui eight wide column">
+                                <h1 class="text-white display-4 m-0">{{premiumAccount}}</h1>
+                                <p class=" text-white font-weight-bold"><i class="far fa-star mr-2"></i> Premium </p>
+
+                            </div>
+                        </div>
+                        <div class="ui row m-0">
+
+                            <div class="ui eight wide column">
+                                <h1 class="text-white display-4 m-0">{{activatedUsers}}</h1>
+                                <p class=" text-white font-weight-bold"><i class="fas fa-user-check mr-2"></i> Activated
+                                </p>
+                            </div>
+                            <div class="ui eight wide column">
+                                <h1 class="text-white display-4 m-0">{{deactivatedUsers}}</h1>
+                                <p class=" text-white font-weight-bold"><i
+                                        class="fas fa-user-times mr-2"></i>Deactivated </p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    </div>
-<h4 class="ui horizontal divider header">
- 
-  Table
-</h4>
+    <h4 class="ui horizontal divider header">
+
+        Table
+    </h4>
     <div class="ui row pt-4 m-0">
         <div class="ui sixteen wide column">
             <div class="ui segment">
-<table class="ui   bg-white celled structured table">
-  <thead>
-    <tr>
-      <th rowspan="2">Detail</th>
-      <th colspan="2">Account Type</th>
-      <th colspan="2">Contact</th>
-      <th colspan="3">Address</th>
-      <th colspan="3">Velidity</th>
-      <th rowspan="2"> </th>
-    </tr>
-    <tr>
-        {{!-- account type --}}
-        <th class="text-center"  data-tooltip="Premium Account"><i class="far fa-star mr-2"></i></th>
-        <th class="text-center"  data-tooltip="Payment Status"><i class="fas fa-rupee-sign mr-2"></i></th>
-        {{!-- contact --}}
-          <th>Mobile</th>
-          <th>email</th>
-          {{!-- address --}}
-          <th>City</th>
-      <th>Pincode</th>
-      <th>State</th>
-      {{!-- validity --}}
-      <th>Start date</th>
-      <th>End Date</th>
-      <th>Plan</th>
-      </tr>
-  
-  </thead>
-  <tbody>
-     {{#each users}}
-         
-    
+                <table class="ui   bg-white celled structured table">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">Detail</th>
+                            <th colspan="3">Account Type</th>
+                            <th colspan="2">Contact</th>
+                            <th colspan="3">Address</th>
+                            <th colspan="3">Velidity</th>
+                            <th rowspan="2"> </th>
+                        </tr>
+                        <tr>
+                            {{!-- account type --}}
+                            <th class="text-center" data-tooltip="Premium Account"><i class="far fa-star mr-2"></i></th>
+                            <th class="text-center" data-tooltip="Payment Status"><i class="fas fa-rupee-sign mr-2"></i>
+                            </th>
+                            <th class="text-center" data-tooltip="Account Activated"> <i class="fas fa-user"></i> </th>
+                            {{!-- contact --}}
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            {{!-- address --}}
+                            <th>City</th>
+                            <th>Pincode</th>
+                            <th>State</th>
+                            {{!-- validity --}}
+                            <th>Start date</th>
+                            <th>End Date</th>
+                            <th>Plan</th>
+                        </tr>
 
-    <tr>
-        {{!-- name company Name --}}
-      <td> 
-            <h4 class="ui orange  header">
-       
-          <div class="content">
-            {{this.instName}}
-            <div class="sub header">
-                {{this.fullName}}
-          </div>
+                    </thead>
+                    <tbody>
+                
+                        {{#each users }}
+                        
+
+
+
+                        <tr>
+                            {{!-- name company Name --}}
+                            <td>
+                                <h4 class="ui orange  header">
+
+                                    <div class="content">
+                                        {{this.instName}}
+                                        <div class="sub header">
+                                            {{this.fullName}}
+                                        </div>
+                                    </div>
+                                </h4>
+
+                            </td>
+                            {{#if  this.premium }}
+                            <td class="  text-center">
+                                <i class="fas   fa-check" style="color: #51cf66;"></i>
+                            </td>
+
+                            {{else}}
+                            <td class="   text-center ">
+                           
+                                <i class="fas fa-times " style="color: #e40000;"></i>
+
+                            </td>
+                            {{/if}}
+                            {{#if  this.payment }}
+                            <td class="  text-center">
+                                <i class="fas   fa-check" style="color: #51cf66;"></i>
+                            </td>
+
+                            {{else}}
+                            <td class="  text-center">
+                                <i class="fas fa-times " style="color: #e40000;"></i>
+
+                            </td>
+                            {{/if}}
+
+                            {{!-- account activated or not  --}}
+                            {{#if  this.isActive }}
+                            <td class="  text-center">
+                                <i class="fas   fa-check" style="color: #51cf66;"></i>
+                            </td>
+
+                            {{else}}
+                            <td class="  text-center">
+                                <i class="fas fa-times " style="color: #e40000;"></i>
+
+                            </td>
+                            {{/if}}
+                            <td>
+                                {{this.mobile}}
+                            </td>
+                            <td>
+                                {{this.email}}
+                            </td>
+                            
+                                
+                            
+                            <td>
+                                {{this.city}}
+                            </td>
+                            <td>
+                                {{this.pincode}}
+
+                            </td>
+                            <td>
+                                {{this.state}}
+
+                            </td>
+                            
+                            <td>
+                                {{this.startDate}}
+
+                            </td>
+                            <td>
+                                {{this.expiryDate}}
+
+                            </td>
+                            <td>
+                            <div class="ui floating     dropdown">
+                                    {{this.plan}}
+                                    <div class="ui menu">
+                                        <div class="ui header">
+                                            {{this.instName}}
+                                            <span class="small"> Update Plan </span>
+                                        </div>
+                                        <div class="ui divider">
+                                              
+                                      
+                                        </div>
+
+                                          {{#each ../plansData as |plan| }}
+                                                                <a href="/admin/users/activePlan/{{../this.id}}/{{this.id}}" class="item">
+                                                      {{this.name}} 
+                                                      <span class="description"> ₹{{this.cost}}/- @ {{this.duration}} Year </span>
+                                                  </a>
+                                           {{/each}}
+                                    </div>
+                            </div>
+                            
+                            </td>
+
+                            <td class=" text-center">
+                                <div class="ui   floating     dropdown  ">
+                                   Action
+                                    <i class="  dropdown icon"></i>
+                                    <div class="  menu">
+                                        <div class="header">
+                                            {{instName}}
+                                        </div>
+                                        <div class="divider"></div>
+                                        <a href="#" class="item">View</a>
+                                        <a href="#" class="item">
+                                            Edit
+                                        </a>
+
+                                        {{#if  this.payment }}          
+                                        {{else}}
+                                        <a href="/admin/users/paymentTrue/{{this.id}}" class="item">Confirm Payment</a>
+                                        {{/if}}
+                                            {{#if  this.isActive }}
+                                        <a href="/admin/users/dissable/{{this.id}}" class="item">
+                                            Deactivate
+                                        </a>
+                                        {{else}}
+
+                                        <a href="/admin/users/verify/{{this.id}}" class="item">
+                                             Activate
+                                        </a>
+
+                                        {{/if}}
+
+
+
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                        {{/each}}
+
+                    </tbody>
+                    <tfoot>
+
+                        <tr>
+                            <th colspan="13">
+
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            
+
         </div>
-      </h4>
-          
-     </td>
-        {{#if  this.primium }} 
-        <td class="  text-center">
-                <i class="fas   fa-check" style="color: #51cf66;"></i>
-        </td>
-           
-            {{else}}
-            <td class="   text-center">
-             <i class="fas fa-times "  style="color: #e40000;"></i>
 
-            </td>
-        {{/if}}
-       {{#if  this.payment }} 
-        <td class="  text-center">
-                <i class="fas   fa-check" style="color: #51cf66;"></i>
-        </td>
-           
-            {{else}}
-            <td class="  text-center">
-             <i class="fas fa-times "  style="color: #e40000;"></i>
-
-            </td>
-        {{/if}}
-      <td>
-          {{this.mobile}}
-      </td>
-      <td>
-          {{this.email}}
-      </td>
-      <td>
-        {{this.address.city}}  
-      </td>
-      <td >
-        {{this.address.pincode}}  
-        
-      </td>
-      <td>
-        {{this.address.state}}  
-
-      </td>
-       <td>
-        {{this.startDate}}  
-
-      </td>
-      <td>
-        {{this.expiryDate}}  
-
-      </td>
-      <td></td>
-      
-      <td class=" text-center">
-          <div class="ui   pointing   dropdown  ">
-  <div class="text">Action</div>
-  <i class="  dropdown icon"></i>
-  <div class="vertical menu">
-    <div class="item">View</div>
-    <div class="item">
-      Edit
-    </div>
-         {{#if  this.isActive }} 
-           <a href="users/dissable/{{this.id}}" class="item">
-            Dissable Account
-        </a>
-            {{else}}
-      
-          <a href="users/verify/{{this.id}}" class="item">
-            Verify Account
-        </a>
-           
-        {{/if}}
-        
-       {{#if  this.primium }} 
-            <a href="premiumFalse/{{this.id}}" class="item">
-             <i class="fas fa-times mr-2"  style="color: #e40000;"></i> Account
-
-            </a>
-            {{else}}
-      
-              <a href="premiumTrue/{{this.id}}" class="item">
-                <i class="fas fa-check mr-2" style="color: #51cf66;"></i> Account
-        </a>
-           
-        {{/if}}
-       {{#if  this.payment }} 
-        <a href=" users/paymentFalse/{{this.id}}" class="item"><i class="fas fa-times mr-2"  style="color: #e40000;"></i> Payment</a>
-            {{else}}
-               <a href="/admin/dashboard/users/paymentTrue/{{this.id}}" class="item"><i class="fas   fa-check mr-2" style="color: #51cf66;" ></i> Payment</a>
-        {{/if}}
-   
- 
-    
-  
-     
-  </div>
-</div>
-      </td>
-      
-    </tr>
-    
-      {{/each}}
-      
-  </tbody>
-  <tfoot>
-      
-    <tr><th colspan="12">
-      <div class="ui right floated pagination menu">
-        <a class="icon item">
-          <i class="left chevron icon"></i>
-        </a>
-        <a class="item">1</a>
-        <a class="item">2</a>
-        <a class="item">3</a>
-        <a class="item">4</a>
-        <a class="icon item">
-          <i class="right chevron icon"></i>
-        </a>
-      </div>
-    </th>
-  </tr>
-  </tfoot>
-</table>
-</div>
-</div>
-    
     </div>
 </div>
