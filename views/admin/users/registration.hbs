@@ -1,0 +1,250 @@
+<div class="ui stackable grid padded">
+    <div class="ui row m-0 ">
+        <div class="ui sixteen wide column">
+            <div class="ui bg-white basic buttons shadow-sm">
+                <a href="/admin/users" class="ui button">All Users</a>
+                <a href="#" class="ui button">Print form</a>
+            </div>
+        </div>
+    </div>
+    {{#if err}}
+    <div class="ui row">
+        <div class="ui sixteen wide column">
+            <div class="ui message">
+                <div class="header">
+                    Oops! Something went wrong
+                </div>
+                <p>{{err}}</p>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</div>
+<h4 class="ui horizontal header divider">
+    Form
+</h4>
+<form action="/admin/users/createUser" method="POST" class="ui form">
+    <div class="ui three column  grid padded">
+        <div class="ui row m-0">
+            {{!-- /* -------------------------------------------------------------------------- */ --}}
+
+            <div class="ui  column">
+                <div class="ui  segment ">
+                    <div class="ui orange inverted shadow-sm ribbon label">Personal </div>
+                    <div class="ui divider"></div>
+                    {{!-- /* -------------------------------------------------------------------------- */ --}}
+
+
+
+                    <div class="field fluid">
+                        <label>Full Name</label>
+                        <div class="field">
+                            <input type="text" required name="fullName" placeholder="Enter your Name">
+                        </div>
+                    </div>
+                    {{!-- /* -------------------------------------------------------------------------- */ --}}
+
+
+                    <div class="field fluid">
+                        <label>Mobile (India)</label>
+                        <div class="field">
+                            <div class="ui left labeled input">
+                                <div class="ui basic label">
+                                    +91 -
+                                </div>
+                                <input type="number" name="perMobile" required placeholder="Mobile" onchange="tmpmobile(this.value)">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- /* -------------------------------------------------------------------------- */ --}}
+
+            <div class="ui  column">
+                <div class="ui segment ">
+                    <div class="ui  orange inverted   shadow-sm ribbon label">Institute </div>
+                    <div class="ui divider"></div>
+                    {{!-- /* -------------------------------------------------------------------------- */ --}}
+
+
+
+                    <div class="field fluid">
+                        <label>Institute Name</label>
+                        <div class="field">
+                            <input type="text" required name="instName" placeholder="Enter your Name">
+                        </div>
+                    </div>
+                    {{!-- /* -------------------------------------------------------------------------- */ --}}
+
+
+                    <div class="field fluid">
+                        <label>Mobile (India)</label>
+                        <div class="field">
+                            <div class="ui left labeled input">
+                                <div class="ui basic label">
+                                    +91 -
+                                </div>
+                                <input type="number" required name="mobile" list="mobileList" placeholder="Enter Mobile ...">
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {{!-- /* -------------------------------------------------------------------------- */ --}}
+
+                    <div class="field fluid">
+                        <label>Email</label>
+                        <div class="field">
+                            <div class="ui  input">
+
+                                <input type="email" name="email" required placeholder="Enter Email ....">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {{!-- /* -------------------------------------------------------------------------- */ --}}
+                    <div class="meta">Address</div>
+                    <div class="ui divider"></div>
+
+                    <div class="field fluid">
+                        <label>Street/Location</label>
+                        <div class="field">
+                            <div class="ui  input">
+                                <input type="text" name="street" list="street" required placeholder="Enter Street/Location ....">
+                            </div>
+                        </div>
+                    </div>
+
+                    {{!-- /* -------------------------------------------------------------------------- */ --}}
+
+                    <div class="field fluid">
+                        <label>State</label>
+                        <div class="field">
+                            <div class="ui fluid input">
+                                <select class="ui required fluid search dropdown" name="state">
+                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                    <option value="Assam">Assam</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Chandigarh">Chandigarh</option>
+                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                    <option value="Daman and Diu">Daman and Diu</option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Lakshadweep">Lakshadweep</option>
+                                    <option value="Puducherry">Puducherry</option>
+                                    <option value="Goa">Goa</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                    <option value="Jharkhand">Jharkhand</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                    <option value="Manipur">Manipur</option>
+                                    <option value="Meghalaya">Meghalaya</option>
+                                    <option value="Mizoram">Mizoram</option>
+                                    <option value="Nagaland">Nagaland</option>
+                                    <option value="Odisha">Odisha</option>
+                                    <option  selected value="Punjab">Punjab</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Sikkim">Sikkim</option>
+                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Tripura">Tripura</option>
+                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    <option value="Uttarakhand">Uttarakhand</option>
+                                    <option value="West Bengal">West Bengal</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>City</label>
+                        <div class="two fields">
+                            <div class="field">
+                                <input type="text" name="city" required name="city" list="city" placeholder="City">
+                            </div>
+
+                            <div class="field">
+                                <input type="text" name="pincode" required name="pincode" list="pincode" placeholder="Enter Pincode">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {{!-- /* -------------------------------------------------------------------------- */ --}}
+
+            <div class="ui  column">
+                <div class="ui segment ">
+                    <div class="ui   orange inverted  shadow-sm   ribbon label">Package</div>
+                    <div class="ui divider"></div>
+                    {{#each plans as |plan|}}
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <div class="ui right floated">
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="plan" checked="Demo" data-nanme="{{this.name}}"
+                                            required value="{{this.id}}" class="hidden">
+                                        <label>Choose</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header">{{this.name}}</div>
+
+                            <div class="description">
+                                ₹{{this.cost}}/- @ {{this.duration}} {{this.durationPeriod}}
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="ui basic segment padded">
+        <div class="ui divider"></div>
+        <button class="ui right floated orange button">Submit</button>
+    </div>
+</form>
+
+
+
+{{!-- /* -------------------------------- Data List ------------------------------- */ --}}
+<datalist id="mobileList">
+
+</datalist>
+<datalist id="pincode">
+    {{#each user as |user|}}
+    <option value="{{user.pincode}}">
+        {{/each}}
+</datalist>
+
+{{!-- City --}}
+<datalist id="city">
+    {{#each user as |user|}}
+    <option value="{{user.city}}">
+        {{/each}}
+</datalist>
+
+{{!-- Street --}}
+<datalist id="street">
+    {{#each user as |user|}}
+    <option value="{{user.street}}">
+        {{/each}}
+</datalist>
+ 
+
+<script>
+
+</script>

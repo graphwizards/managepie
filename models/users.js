@@ -7,6 +7,7 @@ const userScheman = mongoose.Schema({
         type: String,
         required: true,
     },
+    perMobile : Number,
     email: {
         type: String,
         required: true,
@@ -24,6 +25,14 @@ const userScheman = mongoose.Schema({
         type: String,
         
     },
+    demo : {
+        type: Boolean,
+         
+    },
+    payment: {
+        type: Boolean,
+        default: false,
+    },
     mobile: {
         type: String,
         required: true,
@@ -34,10 +43,7 @@ const userScheman = mongoose.Schema({
         type: String,
         required: true,
     },
-    payment: {
-        type: Boolean,
-        default: false,
-    },
+  
     isActive: {
         type: Boolean,
         default: true,
@@ -45,7 +51,7 @@ const userScheman = mongoose.Schema({
     },
     premium: {
         type: Boolean,
-        default: false,
+         
 
     },
     plan: {
@@ -53,6 +59,7 @@ const userScheman = mongoose.Schema({
         default: 'Demo',
 
     },
+    street : String,
 
     city: {
         type: String,
@@ -71,6 +78,12 @@ const userScheman = mongoose.Schema({
         type: Date,
         default: Date.now(),
     },
+    logs: [{
+        lastLogin : String,
+        ip : String,
+        location : String,
+        browser : String,
+    }],
 });
 
 

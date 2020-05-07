@@ -23,8 +23,8 @@ router.use(bodyParser.urlencoded({
 /* GET home page. */
 router.get('/', function(req, res, next) {
     plan.find((err, planData)=>{
-        res.render('admin/plans/index', { title: 'Plans | managepie.com', layout : admin_layout, planData : planData });
-    });
+        res.render('admin/plans/index', { packagePath : "packagePath", title: 'Plans | managepie.com', layout : admin_layout, planData : planData });
+    }).sort({ "cost": 1 });
   
 });
 
@@ -49,6 +49,8 @@ router.post('/createPlan',[
         name : req.body.name,
         cost : req.body.cost,
         duration : req.body.duration,
+        durationPeriod : req.body.durationPeriod,
+        isPremium : req.body.premium,
     });
 
     planAdd.save(function (err, result){

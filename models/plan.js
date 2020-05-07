@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+ 
 
 // user schema
 const planSchema = mongoose.Schema({
@@ -8,15 +8,22 @@ const planSchema = mongoose.Schema({
         required: true,
     },
     duration: {
+        type: Number,
+        required: true,
+ 
+    },
+    durationPeriod: {
         type: String,
         required: true,
-        unique: true,
     },
     cost: {
-        type: String,
+        type: Number,
         required: true,
     },
-
+    isPremium: {
+        type: Boolean,
+        default : false,
+    },
     isActive: {
         type: Boolean,
         default: true,

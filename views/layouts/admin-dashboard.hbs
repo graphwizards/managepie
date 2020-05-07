@@ -6,6 +6,7 @@
     <title>{{title}}</title>
 
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/admin.css">
     <link rel="stylesheet" href="/stylesheets/bootstrap-grid.css">
     
     <link rel="stylesheet" href="/stylesheets/semantic.css">
@@ -13,10 +14,11 @@
     <script src="/javascripts/jquery-v03.min.js"></script>
     <script src="/javascripts/semantic.min.js"></script>
     <script src="/javascripts/fontawasome.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 </head>
 
-<body class="bg-light ">
+<body class="bg-light " ng-app="">
     
     <!-- top navbar -->
     <nav class="ui top fixed   menu mobile-nav shadow-sm ">
@@ -38,17 +40,17 @@
     </nav>
     <!-- end of navbr -->
 
-
+ 
     <!-- sidebar -->
-    <div class="ui sidebar   vertical menu sidebar-menu shadow-sm                " id="sidebar">
-        <div class="item  ">
+    <div class="ui sidebar  border-0  vertical menu sidebar-menu   " id="sidebar">
+        <div class="item  border-0">
            <div class="header  py-3 pb-4">
 
                 <img class="ui centered small image" src="/images/logo-06.svg">
 
             </div>
             <div class="    item">
-                <div class="header text-primary">
+                <div class="header text- ">
                  <i class="far fa-chart-bar mr-2"></i>   General
 
                 </div>
@@ -76,54 +78,21 @@
             </div>
 
 
-            <div class="  item">
-                <div class="header text-primary">
-                  <i class="fas fa-user-plus mr-2"></i>  Administration
-                </div>
-                <div class=" menu pl-5">
-                    <a href="/admin/users/" class="header item">
-                        <div class="py-1">
-                            <!-- <i class="icon user mr-3"></i> -->
-                            Users
-                        </div>
-
-                    </a>
-
-                    <a href="/admin/plans" class=" header item">
-                        <div class="py-1">
-                            <!-- <i class="icon users mr-3"></i> -->
-                            Plans
-                        </div>
-                    </a>
-                    <a href="#" class="header item">
-                        <div class="py-1">
-                            <!-- <i class="icon user plus mr-3"></i> -->
-                            Staff
-                        </div>
-                    </a>
-                  
-                </div>
-            </div>
+         
 
             <div class="   item">
-                <div class="header text-primary">
-                  <i class="fas fa-file-invoice mr-2"></i> Accounts
+                <div class="header text- ">
+                  <i class="fas fa-piggy-bank"></i> <span class="ml-2">Accounts</span>
                 </div>
                 <div class=" menu pl-5">
                     <a href="#" class="header item">
                         <div class="py-1">
                             <!-- <i class="icon user mr-3"></i>  -->
-                            Student Fee
+                            Sale
                         </div>
 
                     </a>
-
-                    <a href="#" class=" header item">
-                        <div class="py-1">
-                            <!-- <i class="icon rupee sign mr-3"></i> -->
-                            Sallery
-                        </div>
-                    </a>
+ 
                     <a href="#" class=" header item">
                         <div class="py-1">
                             <!-- <i class="icon chart bar mr-3"></i> -->
@@ -136,49 +105,50 @@
                             Profit
                         </div>
                     </a>
+                    
                 </div>
             </div>
-            <div class="   item">
-                <div class="header text-primary">
-                 <i class="far fa-folder-open mr-2"></i>   More
+           
+<a href="/admin/users/" class="  {{#if userPath}} active {{/if}} item">
+     <div class="   header m-0 p-0  ">
+          <i class="far fa-user "></i>  <span class="ml-2">Users</span> 
+     </div>
+</a>
+<a href="/admin/plans/" class=" item {{#if packagePath}} active {{/if}}">
+     <div class="header m-0 p-0 text- ">
+                  <i class="far fa-folder "></i> <span class="ml-2">Packages</span> 
                 </div>
-                <div class=" menu pl-5">
-                    <a href="#" class="header item">
-                        <div class="py-1">
-                            <!-- <i class="icon user mr-3"></i>  -->
-                            Courses
-                        </div>
-                    </a>
-
-                    <a href="#" class="header item">
-                        <div class="py-1">
-                            <!-- <i class="icon user mr-3"></i>  -->
-                            Subjects
-                        </div>
-                    </a>
-
-                    <a href="#" class="header   orange item">
-                        <div class="py-1">
-                            <!-- <i class="icon file al mr-3"></i>  -->
-                            Packages
-                        </div>
-                    </a>
-                    <a href="#" class="header   orange item">
-                        <div class="py-1">
-                            <!-- <i class="icon power mr-3"></i>  -->
-                            Queries
-                        </div>
-                    </a>
-                      <a href="#" class="header   orange item">
-                        <div class="py-1">
-                            <!-- <i class="icon power mr-3"></i>  -->
-                            Feedback
-                        </div>
-                    </a>
-
+</a>
+<a href="/admin/users/" class=" item">
+     <div class="header m-0 p-0 text- ">
+                 <i class="far fa-comment-dots"></i> <span class="ml-2">Feedback</span> 
                 </div>
-            </div>
-
+</a>
+<a href="/admin/users/" class=" item">
+     <div class="header m-0 p-0 text- ">
+                 <i class="fas fa-chart-line"></i> <span class="ml-2">Charts</span> 
+                </div>
+</a>
+<a href="/admin/users/" class=" item">
+     <div class="header m-0 p-0 text- ">
+                 <i class="fas fa-server"></i> <span class="ml-2">Database</span> 
+                </div>
+</a>
+<a href="/admin/users/" class=" item">
+     <div class="header m-0 p-0 text- ">
+                 <i class="far fa-bell"></i> <span class="ml-2">Notification</span> 
+                </div>
+</a>
+<a href="/admin/users/" class=" item">
+     <div class="header m-0 p-0 text- ">
+                 <i class="far fa-comment"></i> <span class="ml-2">SMS</span> 
+                </div>
+</a>
+<a href="/admin/users/" class=" item">
+     <div class="header m-0 p-0 text- ">
+                 <i class="fas fa-power-off"></i> <span class="ml-2">Logout</span> 
+                </div>
+</a>
 
         </div>
     </div>
@@ -205,6 +175,7 @@
       </div>
 
     <script src="/javascripts/custom.js"></script>
+
 </body>
 
 </html>

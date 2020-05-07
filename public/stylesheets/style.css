@@ -2149,10 +2149,12 @@ mark,
     color: #fff  !important;
   }
   .text-white-50 {
+    color: #fff  !important;
    opacity: 50% !important;
   }
 
   .text-white-70 {
+    color: #fff  !important;
     opacity: 70% !important;
    }
    
@@ -2205,7 +2207,10 @@ mark,
 .dashboard-curve-chart{
     display: none;
 }
+
+
  
+  
   @media(min-width:768px){
 .dashboard-curve-chart{
     display: initial;

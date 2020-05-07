@@ -6,19 +6,59 @@
     <title>{{title}}</title>
 
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/admin.css">
     <link rel="stylesheet" href="/stylesheets/bootstrap-grid.css">
-    {{!-- <link rel="stylesheet" href="/stylesheets/icon.css"> --}}
+    
     <link rel="stylesheet" href="/stylesheets/semantic.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui-icon@2.3.3/icon.min.css">
-    <script src="https://kit.fontawesome.com/f3f8e909be.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+ 
+    <script src="/javascripts/jquery-v03.min.js"></script>
     <script src="/javascripts/semantic.min.js"></script>
+    <script src="/javascripts/fontawasome.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 </head>
 
 <body>
+    <div class="ui  container sticky top">
+    <div class="ui  secondary stackable menu">
+        <div class="ui item ">
+            <img src="/images/logo-06.svg" class="w-50" alt="">
+        </div>
+        <a href="#" class="item  {{#if activeHomeBtn}} active {{/if}}">
+            <div class="ui sub header m-0 p-0">Home</div>
+        </a>
+
+        <a href="#" class=" item">
+            <div class="ui sub header m-0 p-0">
+                Licence
+            </div>
+        </a>
+        <a href="#" class=" item">
+            <div class="ui sub header m-0 p-0">
+                Get Free Demo
+            </div>
+        </a>
+        <a href="#" class="ui item">
+            <div class="ui sub header m-0 p-0">
+                Contact
+            </div>
+        </a>
+        <div class="ui right   item">
+
+            <div class="ui black  button dropdown  ">
+              <span class="mr-2"><i class="far fa-user-circle"></i> </span> My Account
+                <i class="dropdown icon"></i>
+
+                <div class="ui menu shadow">
+                    <a href="/admin" class="item">Administrator</a>
+                    <a href="/users" class="item">Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     {{{body}}}
      <script src="/javascripts/custom.js"></script>
-</body>
 
+</body>
 </html>

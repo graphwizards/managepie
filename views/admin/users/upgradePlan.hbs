@@ -78,39 +78,24 @@
                             
                       <div class="meta mb-3">Choose Plan</div>
                         <div class="ui header m-0">{{plan.name}}</div>
-                        <div class="description"> ₹{{plan.cost}} @{{this.duration}} years 
+                        <div class="description"> ₹{{plan.cost}} @{{plan.duration}} {{plan.durationPeriod}} 
                             <div>
                                 <div class="ui divider">
                                   
                                 </div>
                                 <div class="ui relaxed   list">
-           <div class="item">
-                 <div class="meta mb-3">Detail</div>
-                 <span class="header">Address</span>
-                 <div class="description">
-                     {{user.city}} | {{user.pincode}}  | {{user.state}}
-                                      </div>
-           </div>
+     
 
              <div class="item">
-            <div class="header">Activate
-                {{#if user.isActive}}
-                <i class="fas fa-check ml-3"></i>
-                {{else}}
-                    
-                {{/if}}
+            <div class="description">
+             Start Date <b> {{startDate}} </b>to  
+             Expiry Date <b> {{expiryDate}} </b>
             </div>     
             </div>
            
 
 
-  <div class="item mt-4">
-        <div class="meta mb-3">Current Plan</div>
-    <div class="content">
-      <span  class="header">{{user.plan}}</span>
-      <div class="description">{{user.startDate}} - to - {{user.expiryDate}}</div>
-    </div>
-  </div>
+ 
   
   
 </div>
@@ -126,8 +111,16 @@
             </div>
             <div class="ui six wide column">
           
-              
-        
+          
+<a href="/admin/users/confirmPayment/{{user.id}}/{{plan.id}}" class="ui fluid huge orange animated fade button">
+<div class="visible content">
+  Checkout
+</div>
+<div class="hidden content">
+  Total ₹{{plan.cost}}/- Only @{{plan.name}} Plan
+</div>
+</a>
+     
         </div>
 
     </div>

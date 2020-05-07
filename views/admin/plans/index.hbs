@@ -45,7 +45,7 @@
        ₹ {{this.cost}}
       </td>
       <td> 
-         {{this.duration}} year
+         {{this.duration}} {{this.durationPeriod}}
       </td>
       <td>
           <div class="ui pointing dropdown">
@@ -75,23 +75,26 @@
                         </div>
                         <div class="ui field">
                             <label for="name">Cost</label>
-                            <input type="text" name="cost" placeholder="Enter Plan Cost eg: 2999">
+                            <input type="text" name="cost" placeholder="Enter Float eg: 2999.00">
                         </div>
                         <div class="ui field">
-                            <label for="name">Duration</label>
-                            <select name="duration" id="duration" name="duration" class="ui dropdown">
-                                <option value=""> -- Select Plan Duration -- </option>
-                                <option value="demo">DEMO</option>
-                                <option value="1">1 Year</option>
-                                <option value="2">2 Year</option>
-                                <option value="3">3 Year</option>
-                                <option value="4">4 Year</option>
-                                <option value="5">5 Year</option>
-                                <option value="6">6 Year</option>
-                                <option value="7">7 Year</option>
-                                <option value="8">8 Year</option>
-                                <option value="9">9 Year</option>
-                                <option value="10">10 Year</option>
+                            <label for="duration">Duration</label>
+                            <div class="ui action input">
+                        <input type="number" name="duration" placeholder="Enter Value">
+                        <select class="ui compact selection dropdown" name="durationPeriod">
+                            <option  value="Days">Days</option>
+                            <option   value="Month">Month</option>
+                            <option value="Years">Year</option>
+                        </select>
+                        </div>
+                        </div>
+                        <div class="ui field">
+                            <label for="name">Premiun</label>
+                            <select name="premium" id="duration" name="duration" class="ui dropdown">
+                                <option value=""> Choose option </option>
+                                <option value="false">No</option>
+                                <option value="true">Yes</option>
+                     
                             </select>
                         </div>
                         <button type="submit" class="ui fluid orange button">
