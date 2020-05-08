@@ -7,6 +7,8 @@ const moment = require('moment');
  
 // mailer
 var nodemailer = require('nodemailer');
+const promise = require('bluebird');
+
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -14,7 +16,13 @@ var transporter = nodemailer.createTransport({
     pass: 'graphw1834'
   }
 });
- 
+
+const EmailTemplate = require('email-templates').EmailTemplate;
+const path = require('path');
+
+
+
+
 // Get Ip Address
 const requestIp = require('request-ip');
 router.use(requestIp.mw());
@@ -290,18 +298,18 @@ router.post('/createUser', [
           }
           else{
       
-      console.log('Email sent: ' + JSON.stringify(info));
-         // everthing is ok
-    var msg = urlencode('Hey! ' + req.body.fullName + ' you are register at managepie your  password id ' + newPassword);
-    var number = req.body.mobile;
-    var apikey = 'eQd2legWgy8-rGnxk289ozJm0FIgTY1onkYsiWmMd2';
-    var sender = 'TXTLCL';
-    var data = 'apikey=' + apikey + '&sender=' + sender + '&numbers=' + number + '&message=' + msg
-    var options = {
-      host: 'api.textlocal.in',
-      path: '/send?' + data
-    };
-   res.redirect('/admin/users');
+                console.log('Email sent: ' + JSON.stringify(info));
+                  // everthing is ok
+              var msg = urlencode('Hey! ' + req.body.fullName + ' you are register at managepie your  password id ' + newPassword);
+              var number = req.body.mobile;
+              var apikey = 'eQd2legWgy8-rGnxk289ozJm0FIgTY1onkYsiWmMd2';
+              var sender = 'TXTLCL';
+              var data = 'apikey=' + apikey + '&sender=' + sender + '&numbers=' + number + '&message=' + msg
+              var options = {
+                host: 'api.textlocal.in',
+                path: '/send?' + data
+              };
+            res.redirect('/admin/users');
           }
        
      

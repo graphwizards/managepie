@@ -23,7 +23,7 @@ router.use(minifyHTML({
 var dashboard_layout = "layouts/user-dashboard";
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('users/login', { title : 'Login | Managepie'});
+  res.render('users/login', { title : 'Login | Managepie', layout : dashboard_layout});
 });
 
 router.get('/dashboard', (req, res) => {

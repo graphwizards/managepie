@@ -7,7 +7,7 @@ const userScheman = mongoose.Schema({
         type: String,
         required: true,
     },
-    perMobile : Number,
+    perMobile : String,
     email: {
         type: String,
         required: true,

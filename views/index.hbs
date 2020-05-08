@@ -1,4 +1,6 @@
-
+  <style>
+ 
+  </style>
 <div class="ui container ">
 
 
@@ -33,7 +35,7 @@
 
         </div>
         <div class="ui divider"></div>
-        <div class="ui four column stackable grid">
+        <div class=" ui four column stackable grid">
             <div class="ui row m-0">
                 <div class="ui column">
                     <div class="ui card shadow-lg h-100">
@@ -116,8 +118,12 @@
                         </div>
                     </div>
                 </div>
+
+                
             </div>
+            
         </div>
+       
         <div class="ui center aligned basic py-5 segment">
             <h3 class="text-white">+50 other awesome modules in ManagePie</h3>
             <a href="#" class="ui black button shadow">Explore More Features <span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></a>
@@ -125,4 +131,52 @@
     </div>
 
 </div>
- 
+ <div class="ui container">
+     <div class="ui basic center aligned segment py-5">
+         <div class="ui  center mb-2 aligned header">
+             <h2>Start Using Managepie for Your Institute Today!</h2>
+         </div>
+         <p>Learn how institute/School ERP can revolutionize <br> the way your deliver education,  improve stakeholder collaboration & improve decision making.</p>
+     </div>
+   
+  <!-- Swiper -->
+  <div class="swiper-container  ui   grid ">
+    <div class="swiper-wrapper">
+        {{#each plans as |plan|}}
+            <div class="swiper-slide ui column">
+                <div class="ui basic segment mb-5">
+  <div class="ui  orange  segment ">
+    <div class="content">
+      <div class="ui orange header"><h2>₹{{this.cost}}/-</h2></div>
+        
+      <div class="meta"> {{this.name}} </div>
+       
+      <div class="description">
+       <b>Duration : </b> {{this.duration}} {{this.durationPeriod}}
+      </div>
+    </div>
+  </div>
+                </div>
+            </div>
+        {{/each}}
+       
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+
+ </div>
+
+   <script>
+    var swiper = new Swiper('.swiper-container', {
+         autoHeight: true, //enable auto height
+      slidesPerView: 4,
+      spaceBetween: 10,
+      mousewheel: true,
+       
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  </script>

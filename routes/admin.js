@@ -5,22 +5,9 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 var urlencode = require('urlencode');
  
- 
-// routers 
-const  userRouter = require('./admin/users');
-const  plansRouter = require('./admin/plans');
+const { check,  validationResult} = require('express-validator');
 
 
-// End of routers
-const {
-  check,
-  validationResult
-} = require('express-validator');
-const user = require('./../models/users');
-const admin = require('./../models/admin');
-
-
-const admin_layout = "layouts/admin-dashboard";
 var minifyHTML = require('express-minify-html');
 
 
@@ -38,7 +25,11 @@ router.use(minifyHTML({
   }
 }));
 
+// modles
+const user = require('./../models/users');
+const admin = require('./../models/admin');
 
+const admin_layout = "layouts/admin-dashboard";
 // middleware
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({
@@ -46,17 +37,22 @@ router.use(bodyParser.urlencoded({
 }));
 
 
+// routers 
+const  userRouter = require('./admin/users');
+const  plansRouter = require('./admin/plans');
+const FetchDataBase = require('./admin/database')
 
 // routers
 router.use('/users', userRouter);
 router.use('/plans', plansRouter);
+router.use('/database', FetchDataBase);
 
 
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.render('admin/login', {
-    title: 'Admin Dashboard | ManagePie'
+    title: 'Admin Dashboard | ManagePie', layout : admin_layout
   });
 });
 
