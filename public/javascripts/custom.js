@@ -7,6 +7,7 @@ function tmpmobile(value) {
 }
 $(".ui.dropdown").dropdown();
 $(".circular.right.floated.basic.button").popup();
+$(".popup").popup();
 $("#dashboard-preloader").fadeOut(400);
 $(".sidebar-menu-toggler").click(function () {
   $(".ui.sidebar")
@@ -15,3 +16,6 @@ $(".sidebar-menu-toggler").click(function () {
 });
 $(".ui.checkbox").checkbox();
 $(".ui.radio.checkbox").checkbox();
+$('.top.menu .item').tab();
+ 
+ 

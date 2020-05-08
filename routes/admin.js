@@ -52,7 +52,7 @@ router.use('/database', FetchDataBase);
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.render('admin/login', {
-    title: 'Admin Dashboard | ManagePie', layout : admin_layout
+    title: 'Admin Login | ManagePie' 
   });
 });
 
