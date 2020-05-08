@@ -7,6 +7,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var minifyHTML = require('express-minify-html');
+
+ 
+
  
 const database = require('./database');
 var app = express();
@@ -25,8 +28,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
  
-
-
+ 
 app.use(minifyHTML({
   override:      true,
   exception_url: false,
@@ -47,6 +49,8 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+  // Ip Address
+  
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

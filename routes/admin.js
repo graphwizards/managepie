@@ -1,15 +1,14 @@
 var express = require('express');
 var router = express.Router();
-
 const http = require('http');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
-
-
+var urlencode = require('urlencode');
+ 
+ 
 // routers 
 const  userRouter = require('./admin/users');
 const  plansRouter = require('./admin/plans');
-
 
 
 // End of routers
@@ -19,7 +18,7 @@ const {
 } = require('express-validator');
 const user = require('./../models/users');
 const admin = require('./../models/admin');
-var urlencode = require('urlencode');
+
 
 const admin_layout = "layouts/admin-dashboard";
 var minifyHTML = require('express-minify-html');
@@ -171,7 +170,7 @@ router.post('/sendsms', [
   var number = req.body.mobile;
   var apikey = 'eQd2legWgy8-rGnxk289ozJm0FIgTY1onkYsiWmMd2';
 
-  var sender = 'MNGPIE';
+  var sender = 'TCTLCL';
   var data = 'apikey=' + apikey + '&sender=' + sender + '&numbers=' + number + '&message=' + msg
   var options = {
     host: 'api.textlocal.in',

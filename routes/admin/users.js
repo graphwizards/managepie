@@ -4,6 +4,21 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const moment = require('moment');
+ 
+// mailer
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'graphwizards@gmail.com',
+    pass: 'graphw1834'
+  }
+});
+ 
+// Get Ip Address
+const requestIp = require('request-ip');
+router.use(requestIp.mw());
+var geoip = require('geoip-lite');
 // password generator
 var generatePassword = require('password-generator');
 const {
@@ -19,43 +34,56 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({
   extended: true
 }));
-// fetch plans
-plan.find((err, result)=>{
-  if(err) throw err;
-  planDetail = result;
-});
+
+ 
+      // fetch plans
+      plan.find((err, result)=>{
+        if(err) throw err;
+        planDetail = result;
+      });
 // fetch users
 user.find((err, result)=>{
   if(err) throw err;
   userdata = result;
 });
-// user find by id
-function userbyid(id) {
-  user.findById(id,(err, result)=>{
-    if(err) throw err;
+
+
+// get user ip address  and detail
+function getIpAddress(req, title) {
+  const ip = req.clientIp;
+  var geo = geoip.lookup(ip);
+  if (geo = "null") {
+    console.log(ip, title);
+  }
+  else{
+    console.log("IP is " + ip + "\n" + geo + "\n" + title);
+  }
    
-  });
 }
-// plan findbyid
-function planbyid(id) {
-  plan.findById(id,(err, result)=>{
-    if(err) throw err;
-   
-  });
-}
+
 // users views
 router.get('/', (req, res) => {
+
+// fetch users
+user.find((err, result)=>{
+  if(err) throw err;
+  usersData = result;
+});
+ 
+  
       // premium users count
-      user.count({ "premium": true }, (err, premiumdata) => {
+      user.estimatedDocumentCount({ "premium": true }, (err, premiumdata) => {
         if (err) throw err;
         //  total users count
-        user.count(decodeURI(), (err, totalUser) => {
+        user.estimatedDocumentCount(decodeURI(), (err, totalUser) => {
           // isAscive users count
-          user.count({ "isActive": true }, (err, activatedUser) => {
+          user.estimatedDocumentCount({ "isActive": true }, (err, activatedUser) => {
             if (err) throw err;
             var deactivatedUsers = totalUser - activatedUser;
             // fetch Plans
-              res.render('admin/users/index', { layout: admin_layout, userPath : "userPath", title: "Users | managepie.com", users: userdata, premiumAccount: premiumdata, totalUser: totalUser, activatedUsers: activatedUser, deactivatedUsers: deactivatedUsers, plansData: planDetail });
+                var title = 'Users | managepie.com';
+                getIpAddress(req, title);
+              res.render('admin/users/index', { layout: admin_layout, userPath : "userPath", title: title, users: usersData, premiumAccount: premiumdata, totalUser: totalUser, activatedUsers: activatedUser, deactivatedUsers: deactivatedUsers, plansData: planDetail });
           });
         })
       })
@@ -187,28 +215,29 @@ router.post('/createUser', [
   if (!errors.isEmpty()) {
     res.send(errors);
   }
-  planValue = req.body.plan;
-   plan.findById(planValue, (err, planresult)=>{
+  var planID = req.body.plan;
+   plan.findById(planID, (err, planresult)=>{
      if(err) throw err;
-     var planName = planresult.name;
-     var planDuration = planresult.duration;
-     var planDurationPeriod = planresult.planDurationPeriod;
-     var planPremium = planresult.isPremium;
-     var startDate = moment().format("DD MMMM YYYY");
+     var RplanName = planresult.name;
+     var rPlanDuration = planresult.duration;
+     var RplanDurationPeriod = planresult.durationPeriod;
+     var RplanPremium = planresult.isPremium;
+     var RstartDate = moment().format("DD MMMM YYYY");
        // set expiry dates 
-    if (planDurationPeriod == "Days") {
-      var expiryDate = moment().add(planDuration, 'd').format("DD MMMM YYYY");
+    if (RplanDurationPeriod == "Days" || RplanDurationPeriod == "days" || RplanDurationPeriod == "day" || RplanDurationPeriod == "day") {
+      var RexpiryDate = moment().add(rPlanDuration, 'd').format("DD MMMM YYYY");
     }
-    else if (planDurationPeriod == "Month") {
-      var expiryDate = moment().add(planDuration, 'M').format("DD MMMM YYYY");
+    else if (RplanDurationPeriod == "Month") {
+      var RexpiryDate = moment().add(rPlanDuration, 'M').format("DD MMMM YYYY");
     }
     else {
-      var expiryDate = moment().add(planDuration, 'y').format("DD MMMM YYYY");
+      var RexpiryDate = moment().add(rPlanDuration, 'y').format("DD MMMM YYYY");
     }
-    if (planName == "Demo" || planName == "demo") {
+
+    if (RplanName == "Demo" || RplanName == "demo") {
       var demo_value = true;
     }
-    else{
+    else{ 
       var demo_value = false;
     }
     // generate password
@@ -220,16 +249,16 @@ router.post('/createUser', [
       perMobile : req.body.perMobile,
       email: req.body.email,
       instName: req.body.instName,
-      startDate : startDate,
-      expiryDate : expiryDate,
-      demo : true,
+      startDate : RstartDate,
+      expiryDate : RexpiryDate,
       mobile: req.body.mobile,
       street : req.body.street,
       city: req.body.city,
       state: req.body.state,
+      plan : RplanName,
       pincode: req.body.pincode,
       password: hashPassword,
-      premium : planPremium,
+      premium : RplanPremium,
       demo : demo_value,
       logs : [{
         lastLogin : "",
@@ -238,20 +267,73 @@ router.post('/createUser', [
         browser : "",
       }],
     });
-    // insert data into database
-    temp.save(function (err, result) {
-      if (err) {
-        return res.json({
-          status: false,
-          message: "DB Insert failed..",
-          error: err
+    var mailOptions = {
+      from: 'support@managepie',
+      to: req.body.email,
+      subject: 'ManagePie Password',
+      text: 'Your ManagePie Password is ' + newPassword,
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+        res.send(error);
+      } else {
+
+        // Insert data Into dataBase
+        temp.save(function (err, result) {
+          if (err) {
+            return res.json({
+              status: false,
+              message: "DB Insert failed..",
+              error: err
+            });
+          }
+          else{
+      
+      console.log('Email sent: ' + JSON.stringify(info));
+         // everthing is ok
+    var msg = urlencode('Hey! ' + req.body.fullName + ' you are register at managepie your  password id ' + newPassword);
+    var number = req.body.mobile;
+    var apikey = 'eQd2legWgy8-rGnxk289ozJm0FIgTY1onkYsiWmMd2';
+    var sender = 'TXTLCL';
+    var data = 'apikey=' + apikey + '&sender=' + sender + '&numbers=' + number + '&message=' + msg
+    var options = {
+      host: 'api.textlocal.in',
+      path: '/send?' + data
+    };
+   res.redirect('/admin/users');
+          }
+       
+     
+          
         });
+  
       }
-      // everthing is ok
-       res.redirect('/admin/users');
     });
+    // insert data into database
+ 
      
    });
 
 });
+
+
+// delete user 
+router.get('/deleteUser/:id', (req, res) => {
+  user.deleteOne({_id: req.params.id}, (err, result)=>{
+    if(err){
+      console.log(err);
+       res.redirect('/admin/users');
+    }
+    else{
+       
+      res.redirect('/admin/users');
+
+    }
+
+  });
+});
+
+
+
 module.exports = router;

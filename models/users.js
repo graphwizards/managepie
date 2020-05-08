@@ -56,7 +56,7 @@ const userScheman = mongoose.Schema({
     },
     plan: {
         type: String,
-        default: 'Demo',
+    
 
     },
     street : String,

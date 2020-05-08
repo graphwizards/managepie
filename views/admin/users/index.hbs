@@ -2,7 +2,7 @@
 <script type="text/javascript">
     google.charts.load('current', { 'packages': ['bar'] });
     google.charts.setOnLoadCallback(drawChart);
- 
+
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
             ['Month', 'Total Users', 'Premium Users', 'Demo Users'],
@@ -18,8 +18,8 @@
             ['Oct', 1100, 1120, 300],
             ['Nov', 700, 540, 350],
             ['Dec', 200, 540, 350]
-            
-            
+
+
 
 
         ]);
@@ -158,10 +158,10 @@
 
                     </thead>
                     <tbody>
-                       
-                
+
+
                         {{#each users }}
-                        
+
 
 
 
@@ -173,7 +173,7 @@
                                     <div class="content">
                                         {{this.instName}}
                                         <div class="sub header">
-                                            {{this.fullName}} 
+                                            {{this.fullName}}
                                         </div>
                                     </div>
                                 </h4>
@@ -186,7 +186,7 @@
 
                             {{else}}
                             <td class="   text-center ">
-                           
+
                                 <i class="fas fa-times " style="color: #e40000;"></i>
 
                             </td>
@@ -222,9 +222,9 @@
                             <td>
                                 {{this.email}}
                             </td>
-                            
-                                
-                            
+
+
+
                             <td>
                                 {{this.city}}
                             </td>
@@ -236,7 +236,7 @@
                                 {{this.state}}
 
                             </td>
-                            
+
                             <td>
                                 {{this.startDate}}
 
@@ -246,7 +246,7 @@
 
                             </td>
                             <td>
-                            <div class="ui floating dropdown">
+                                <div class="ui floating dropdown">
                                     {{this.plan}}
                                     <div class="ui menu">
                                         <div class="ui header">
@@ -254,24 +254,25 @@
                                             <span class="small"> Update Plan </span>
                                         </div>
                                         <div class="ui divider">
-                                              
-                                      
+
+
                                         </div>
 
-                                          {{#each ../plansData as |plan| }}
-                                                                <a href="/admin/users/activePlan/{{../this.id}}/{{this.id}}" class="item">
-                                                      {{this.name}} 
-                                                      <span class="description"> ₹{{this.cost}}/- @ {{this.duration}} {{this.durationPeriod}} </span>
-                                                  </a>
-                                           {{/each}}
+                                        {{#each ../plansData as |plan| }}
+                                        <a href="/admin/users/activePlan/{{../this.id}}/{{this.id}}" class="item">
+                                            {{this.name}}
+                                            <span class="description"> ₹{{this.cost}}/- @ {{this.duration}}
+                                                {{this.durationPeriod}} </span>
+                                        </a>
+                                        {{/each}}
                                     </div>
-                            </div>
-                            
+                                </div>
+
                             </td>
 
                             <td class=" text-center">
                                 <div class="ui   floating     dropdown  ">
-                                   Action
+                                    Action
                                     <i class="  dropdown icon"></i>
                                     <div class="  menu">
                                         <div class="header">
@@ -283,22 +284,24 @@
                                             Edit
                                         </a>
 
-                                        {{#if  this.payment }}          
+                                        {{#if  this.payment }}
                                         {{else}}
                                         <a href="/admin/users/paymentTrue/{{this.id}}" class="item">Confirm Payment</a>
                                         {{/if}}
-                                            {{#if  this.isActive }}
+                                        {{#if  this.isActive }}
                                         <a href="/admin/users/dissable/{{this.id}}" class="item">
                                             Deactivate
                                         </a>
                                         {{else}}
 
                                         <a href="/admin/users/verify/{{this.id}}" class="item">
-                                             Activate
+                                            Activate
                                         </a>
 
                                         {{/if}}
-
+                                        <a href="/admin/users/deleteUser/{{this.id}}"   class="item">
+                                            Delete User
+                                        </a>
 
 
 
@@ -321,9 +324,11 @@
                     </tfoot>
                 </table>
             </div>
-            
+
 
         </div>
 
     </div>
 </div>
+ 
+ 
