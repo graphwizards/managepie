@@ -36,8 +36,8 @@
             <div class="ui dropdown item">
                <i class="fas fa-cog"></i>
                 <div class="menu">
-                    <a href="#" class="item"><i class="far fa-user"></i> Profile</a>
-                    <a href="#" class="item"><i class="fas fa-power-off"></i> Sign Out</a>
+                    <a href="#" class="item"><i class="icon user"></i> Profile</a>
+                    <a href="#" class="item"><i class="icon power-off"></i> Sign Out</a>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="    item">
                 <div class="header text- ">
-                 <i class="far fa-chart-bar mr-2"></i>   General
+                 <i class="icon chart-bar mr-2"></i>   General
 
                 </div>
                 <div class=" menu pl-5 ">
@@ -86,7 +86,7 @@
 
             <div class="   item">
                 <div class="header text- ">
-                  <i class="fas fa-piggy-bank"></i> <span class="ml-2">Accounts</span>
+                  <i class="icon piggy-bank"></i> <span class="ml-2">Accounts</span>
                 </div>
                 <div class=" menu pl-5">
                     <a href="#" class="header item">
@@ -115,42 +115,42 @@
            
 <a href="/admin/users/" class="  {{#if userPath}} active {{/if}} item">
      <div class="   header m-0 p-0  ">
-          <i class="far fa-user "></i>  <span class="ml-2">Users</span> 
+          <i class="icon user "></i>  <span class="ml-2">Users</span> 
      </div>
 </a>
 <a href="/admin/plans/" class=" item {{#if packagePath}} active {{/if}}">
      <div class="header m-0 p-0 text- ">
-                  <i class="far fa-folder "></i> <span class="ml-2">Packages</span> 
+                  <i class="icon  folder "></i> <span class="ml-2">Packages</span> 
                 </div>
 </a>
 <a href="/admin/users/" class=" item">
      <div class="header m-0 p-0 text- ">
-                 <i class="far fa-comment-dots"></i> <span class="ml-2">Feedback</span> 
+                 <i class="icon comment-dots alternate"></i> <span class="ml-2">Feedback</span> 
                 </div>
 </a>
 <a href="/admin/users/" class=" item">
      <div class="header m-0 p-0 text- ">
-                 <i class="fas fa-chart-line"></i> <span class="ml-2">Charts</span> 
+                 <i class="icon chart-line alternate"></i> <span class="ml-2">Charts</span> 
                 </div>
 </a>
 <a href="/admin/database/" class=" {{#if databasePath}} active {{/if}} item">
      <div class="header m-0 p-0 text- ">    
-                 <i class="fas fa-server"></i> <span class="ml-2">Database</span> 
+                 <i class="icon server"></i> <span class="ml-2">Database</span> 
                 </div>
 </a>
 <a href="/admin/users/" class=" item">
      <div class="header m-0 p-0 text- ">
-                 <i class="far fa-bell"></i> <span class="ml-2">Notification</span> 
+                 <i class="icon bell"></i> <span class="ml-2">Notification</span> 
                 </div>
 </a>
 <a href="/admin/users/" class=" item">
      <div class="header m-0 p-0 text- ">
-                 <i class="far fa-comment"></i> <span class="ml-2">SMS</span> 
+                 <i class="icon comment"></i> <span class="ml-2">SMS</span> 
                 </div>
 </a>
-<a href="/admin/users/" class=" item">
+<a href="/admin/logout/" class=" item">
      <div class="header m-0 p-0 text- ">
-                 <i class="fas fa-power-off"></i> <span class="ml-2">Logout</span> 
+                 <i class="icon power-off"></i> <span class="ml-2">Logout</span> 
                 </div>
 </a>
 
@@ -164,9 +164,7 @@
       <div class="pusher">
         <div class="main-content  ">
   <div class="ui basic blurring segment">
-      <div class="ui active  inverted dimmer" id="dashboard-preloader">
-    <div class="ui text  loader">Loading</div>
-  </div>
+     
 
 {{{body}}}
 

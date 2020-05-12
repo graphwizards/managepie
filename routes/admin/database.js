@@ -36,8 +36,9 @@ router.use(bodyParser.urlencoded({
 const   admin_layout  = "layouts/admin-dashboard";
 
 router.get('/', (req, res) => {
-    res.render('admin/database/index', {title : "Database | Managepie.com" , layout : admin_layout, databasePath : true, admin : adminData, users : userData, plans : planData});
-
+    res.render('admin/database/index', {title : "Database | Managepie.com" , layout : admin_layout, databasePath : true, admin : adminData, users :  userData, plans : planData});
+     
+     
 });
 
 module.exports = router;

@@ -1,13 +1,10 @@
 
-  <div class="main-container  d-flex flex-wrap align-content-center h-100 w-100 justify-content-center">
+  <div class="main-container  d-flex flex-wrap align-content-center h-100 w-100 justify-content-center   ">
      
 
 
-  <div class="content-container " style="width: 20%;">
-      <div class="w-100 py-5 d-flex justify-content-center">
-        <img src="./images/logo-06.svg" class="logo"   alt="">
-        
-      </div>
+  <div class="content-container   " style="width: 20%;">
+      
       
       <div class="ui basic  segment ">
           <div class="ui active inverted dimmer">
@@ -15,21 +12,26 @@
             </div>
          <div class="ui one column stackable grid  ">
              <div class="middle aligned  column">
-                  <form action="/admin/dashboard" class=" ui form">
+                  <form action="/admin/login" method="POST"class=" ui form">
+           <h3 class="font-weight-normal">Admin Login</h3>
+           <div class="ui divider"></div>
+           {{#if error}}
+           {{error}}
              
+           {{/if}}
                {{!-- username --}}
                <div class="ui field">
                      <div class="ui left icon fluid input my-2">
-                <input type="text" placeholder="Username">
-                <i class="user icon"></i>
+                <input type="text" required  name="email" placeholder="Email">
+                <i class="mail icon"></i>
                 </div>
                 </div>
                 
                 {{!-- password --}}
                 <div class="ui field">
                       <div class="ui left icon fluid input my-2">
-                <input type="text" placeholder="Password">
-                <i class="lock   alternate icon"></i>
+                <input type="password" required name="password" placeholder="Password">
+                <i class="lock  alternate icon"></i>
                 </div>
                 </div>
                 {{!-- button --}}
@@ -41,10 +43,6 @@
                         <i class="icon long arrow alternate right"></i>
                     </div>
                 </button>
-                 
-               
-
-           
           </form>
              </div>
          </div>

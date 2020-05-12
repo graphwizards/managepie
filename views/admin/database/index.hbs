@@ -1,12 +1,11 @@
-<div class="ui stackable grid padded">
- <div class="ui row m-0"><div class="ui sixteen wide column">
-  <div class="ui  basic segment">
+ 
  <div class="ui header">
+  
      Databases
  </div>
  <div class="ui divider"></div>
  <div class="ui attached tabular  top menu">
-  <a class="item active" data-tab="admin">
+  <a class="item active " data-tab="admin">
     Admin
   </a>
   <a class="item  " data-tab="users">
@@ -19,7 +18,7 @@
 </div>
 
 {{!-- Admin Database table --}}
-<div class="ui bottom attached segment tab active     " data-tab="admin">
+<div class="ui bottom attached segment tab active   " data-tab="admin">
 <table class="ui selectable   basic padded celled  table"  >
 <thead>
         <tr>
@@ -70,7 +69,7 @@
 </table>
 </div>
 {{!-- Users Database Table --}}
- <div class="ui bottom attached segment tab" data-tab="users">
+ <div class="ui bottom attached segment tab" id="usersData" data-tab="users">
   {{users}}
 </div>
 {{!-- Plans database Table --}}
@@ -78,9 +77,9 @@
  {{plans}}
 </div>
 
-  </div>
-  
-</div>
- 
-  </div>
+  <script>
+    var data = $('#usersData').text();
+    var result = data.replace(/\,/g,',<br/>');  
+    $('#usersData').html(result);
+  </script>
  
