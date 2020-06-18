@@ -7,13 +7,16 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 var minifyHTML = require('express-minify-html');
-
- 
+const passport = require('passport');
+const admin = require('./models/admin');
+const users = require('./models/users');
 
  
 const database = require('./database');
 var app = express();
 
+app.use(passport.initialize());
+app.use(passport.session());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -27,7 +30,47 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
- 
+
+
+
+
+
+
+
+passport.serializeUser(function (entity, done) {
+  done(null, { id: entity.id, role: entity.role });
+});
+
+passport.deserializeUser(function (obj, done) {
+  switch (obj.role) {
+      case 'admin':
+          admin.findById(obj.id)
+              .then(user => {
+                  if (user) {
+                      done(null, user);
+                  }
+                  else {
+                      done(new Error('user id not found:' + obj.id, null));
+                  }
+              });
+          break;
+      case 'users':
+          users.findById(obj.id)
+              .then(device => {
+                  if (device) {
+                      done(null, device);
+                  } else {
+                      done(new Error('device id not found:' + obj.id, null));
+                  }
+              });
+          break;
+      default:
+          done(new Error('no entity type:', obj.type), null);
+          break;
+  }
+});
+//login routes
+
  
 app.use(minifyHTML({
   override:      true,

@@ -1,0 +1,40 @@
+{{#if err}}
+    <div class="ui red message"><i class="icon close"></i>
+    {{error}}
+    </div>
+{{/if}}
+{{#if success}}
+    <div class="ui green message"><i class="icon close"></i>
+    {{success}}
+    </div>
+{{/if}}
+<div class="ui  stackable grid padded">
+    <div class="ui ten wide column">
+        <div class="ui segment">
+            <div class="ui orange ribbon label">My Courses</div>
+            <div class="ui divider"></div>
+            {{courses}}
+        </div>
+    </div>
+
+
+    {{!-- upload courses --}}
+    <div class="ui six wide column">
+        <div class="ui segment">
+            <div class="ui orange ribbon label">Create Courses</div>
+            <div class="ui divider"></div>
+            <form action="/users/courses" method="POST" class="ui form">
+                <div class="ui field">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" placeholder="Enter course name">
+                </div>
+                <div class="ui field">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" cols="30" rows="4" placeholder="Enter course description"></textarea>
+
+                </div>
+                <div class="ui orange fluid button" type="submit">Create</div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -5,19 +5,6 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const moment = require('moment');
  
-// mailer
-var nodemailer = require('nodemailer');
-const promise = require('bluebird');
-
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'graphwizards@gmail.com',
-    pass: 'graphw1834'
-  }
-});
-
-const EmailTemplate = require('email-templates').EmailTemplate;
 const path = require('path');
 
 
@@ -178,7 +165,7 @@ router.get('/confirmPayment/:userID/:planID', (req, res) => {
              res.send("Your Demo Period was finish please try premium");
       }
       else{
-        user.updateOne({_id:userID}, {"plan" : planName, "startDate" : startDate, "expiryDate" : expiryDate, "premium" : planPremium, "demo" : true,}, function(err, result){
+        user.updateOne({_id:userID}, {"plan" : planName, "startDate" : startDate, "expiryDate" : expiryDate, "premium" : planPremium, "demo" : true, "premium" : true}, function(err, result){
           if(err){
             console.log(err);
           } 
@@ -275,48 +262,22 @@ router.post('/createUser', [
         browser : "",
       }],
     });
-    var mailOptions = {
-      from: 'support@managepie',
-      to: req.body.email,
-      subject: 'ManagePie Password',
-      text: 'Your ManagePie Password is ' + newPassword,
-    };
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-        res.send(error);
-      } else {
-
-        // Insert data Into dataBase
-        temp.save(function (err, result) {
-          if (err) {
-            return res.json({
-              status: false,
-              message: "DB Insert failed..",
-              error: err
-            });
-          }
-          else{
-      
-                console.log('Email sent: ' + JSON.stringify(info));
-                  // everthing is ok
-              var msg = urlencode('Hey! ' + req.body.fullName + ' you are register at managepie your  password id ' + newPassword);
-              var number = req.body.mobile;
-              var apikey = 'eQd2legWgy8-rGnxk289ozJm0FIgTY1onkYsiWmMd2';
-              var sender = 'TXTLCL';
-              var data = 'apikey=' + apikey + '&sender=' + sender + '&numbers=' + number + '&message=' + msg
-              var options = {
-                host: 'api.textlocal.in',
-                path: '/send?' + data
-              };
-            res.redirect('/admin/users');
-          }
-       
-     
-          
+   
+    temp.save(function (err, result) {
+      if (err) {
+        return res.json({
+          status: false,
+          message: "DB Insert failed..",
+          error: err
         });
-  
       }
+      else{
+        console.log(newPassword);
+        res.redirect('/admin/users');
+      }
+   
+ 
+      
     });
     // insert data into database
  

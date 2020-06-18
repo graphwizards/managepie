@@ -78,12 +78,17 @@ const userScheman = mongoose.Schema({
         type: Date,
         default: Date.now(),
     },
+    role: {
+        type: String,
+        default: "users",
+    },
     logs: [{
         lastLogin : String,
         ip : String,
         location : String,
-        browser : String,
+        timezone : String,
     }],
+    
 });
 
 

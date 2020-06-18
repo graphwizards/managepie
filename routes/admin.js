@@ -3,13 +3,13 @@ var router = express.Router();
 const http = require('http');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
-var urlencode = require('urlencode');
+const urlencode = require('urlencode');
 const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
- 
 const { check,  validationResult} = require('express-validator');
+
 
 router.use(cookieParser('secret'));
 router.use(session({
@@ -18,14 +18,12 @@ router.use(session({
   expires : new Date(Date.now() + 3600000),
   resave : true,
   saveUninitialized : true,
-
+  cookie:{
+    maxAge: 100000000000000
+}
 }));
 
-
 var minifyHTML = require('express-minify-html');
-
-
-  
 router.use(minifyHTML({
   override:      true,
   exception_url: false,
@@ -38,24 +36,18 @@ router.use(minifyHTML({
       minifyJS:                  true
   }
 }));
-
+router.use(passport.initialize());
+router.use(passport.session());
 // modles
- 
 const admin = require('./../models/admin');
-
 const admin_layout = "layouts/admin-dashboard";
 // middleware
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({
   extended: true
 }));
-
-router.use(passport.initialize());
-router.use(passport.session());
-
+ 
 router.use(flash());
-
-
 // global variable
 router.use(function(req, res, next){
   res.locals.susess_message = req.flash('success_message')
@@ -63,7 +55,6 @@ router.use(function(req, res, next){
   res.locals.error = req.flash('error');
   next();
 });
-
 // routers 
 const  userRouter = require('./admin/users');
 const  plansRouter = require('./admin/plans');
@@ -72,9 +63,7 @@ const FetchDataBase = require('./admin/database')
 
 
 
-
-// check authentication
-
+// ///////////////////////////////////////////////////////////////////////////////////// Check Authentication
 const checkAuthenticated = function(req, res, next){
   if (req.isAuthenticated()) {
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, post-check=0, pre-check=0');
@@ -83,96 +72,70 @@ const checkAuthenticated = function(req, res, next){
     res.redirect('/admin');
 }
 }
-
-
 const checkAuthenticatedLogin = function(req, res, next){
   if (req.isAuthenticated()) {
     res.redirect('/admin/dashboard');
-    
   }
   return next();
 }
 
 
+// ///////////////////////////////////////////////////////////////////// Admin Authentication
+ 
+ var LocalStrategy  = require('passport-local').Strategy;
+ passport.use('admin', new LocalStrategy({ usernameField : 'email' },(email, password, done)=>{
+   admin.findOne({ email : email}, (err, data)=>{
+     if(err) throw err;
+     if(!data){
+       return done(null, false, {message : "Admin Dosen't Exists..."});
+     }
+     bcrypt.compare(password, data.password, (err, match)=>{
+       if(err){
+         return done(null, false);
+       }
+       if(!match){
+         return done(null, false, {message : "Password Dosen't Match..."});
+       }
+       if(match){
+         return done(null, data);
+       }
+     })
+   })
+ }))
 // routers
 router.use('/users',checkAuthenticated, userRouter);
 router.use('/plans',checkAuthenticated, plansRouter);
 router.use('/database',checkAuthenticated, FetchDataBase);
-
-
 /* GET users listing. */
 router.get('/',checkAuthenticatedLogin, function (req, res, next) {
   res.render('admin/login', {
     title: 'Admin Login | ManagePie' 
   });
 });
+// ///////////////////////////////////////////////////////////////////////////////////// Admin Login
 
-
- 
-
-
-
-// Login Passport authentication
 router.post('/login', (req, res, next) => {
-  // Authentication strategy
-var localStrategy  = require('passport-local').Strategy;
-passport.use(new localStrategy({ usernameField : 'email' },(email, password, done)=>{
-  admin.findOne({ email : email}, (err, data)=>{
-    if(err) throw err;
-    if(!data){
-      return done(null, false, {message : "User Dosen't Exists..."});
-    }
-    bcrypt.compare(password, data.password, (err, match)=>{
-      if(err){
-        return done(null, false);
-      }
-      if(!match){
-        return done(null, false, {message : "Password Dosen't Match..."});
-      }
-      if(match){
-        return done(null, data);
-      }
-    })
-  })
-}))
-
-passport.serializeUser(function(user, cb){
-  cb(null, user.id);
-});
-passport.deserializeUser(function(id, cb){
-  admin.findById(id, function(err, user){
-    cb(err, user);
-  })
-})  
-  passport.authenticate('local', {
+  passport.authenticate('admin', {
     failureRedirect : '/admin',
     successRedirect : '/admin/dashboard',
     failureFlash : true,
   })(req, res, next)
- 
- 
 });
-
+// ///////////////////////////////////////////////////////////////////////////////////// Dashboard
 router.get('/dashboard',checkAuthenticated, (req, res) => {
   res.render('admin/dashboard', {
     layout: admin_layout,
     title: "Dashboard | managepie.com",
     admin : req.user,
   });
-  console.log(req.user);  
+  console.log(req.user.id);  
 });
-
-// logout
+// ///////////////////////////////////////////////////////////////////////////////////// Logout
 router.get('/logout', (req, res) => {
   req.logout();
    res.redirect('/');
-
 });
- 
-
-
-
-// create admin
+// ///////////////////////////////////////////////////////////////////////////////////// Create Admin
 router.post('/createadmin', [
   // check fields
   check('fullName').not().isEmpty().trim().escape(),
@@ -189,11 +152,7 @@ router.post('/createadmin', [
       errors: errors.array(),
     });
   }
-
-
-
   const hashPassword = bcrypt.hashSync(req.body.password, 10);
-
   // create new user model 
   var adminControler = new admin({
     fullName: req.body.fullName,
@@ -202,7 +161,6 @@ router.post('/createadmin', [
     mobile: req.body.mobile,
     password: hashPassword,
   });
-
   // insert data into database
   adminControler.save(function (err, result) {
     if (err) {
@@ -216,17 +174,14 @@ router.post('/createadmin', [
     var msg = urlencode('Hey! ' + req.body.fullName + ' you are register as a administrator in managepie');
     var number = req.body.mobile;
     var apikey = 'eQd2legWgy8-rGnxk289ozJm0FIgTY1onkYsiWmMd2';
-
-    var sender = 'TXTLCL';
+    var sender = 'MNGPIE';
     var data = 'apikey=' + apikey + '&sender=' + sender + '&numbers=' + number + '&message=' + msg
     var options = {
       host: 'api.textlocal.in',
       path: '/send?' + data
     };
-
     callback = function (response) {
       var str = '';
-
       //another chunk of data has been recieved, so append it to `str`
       response.on('data', function (chunk) {
         str += chunk;
@@ -240,17 +195,12 @@ router.post('/createadmin', [
         });
       });
     }
-
     //console.log('hello js'))
     http.request(options, callback).end();
-
   });
 });
+// ///////////////////////////////////////////////////////////////////////////////////// Send SMS
 
-
-
-
-// send SMS
 router.post('/sendsms', [
   // check fields
   check('mobile').not().isEmpty().trim().escape(),
@@ -264,21 +214,17 @@ router.post('/sendsms', [
       errors: errors.array(),
     });
   }
-
   var msg = urlencode(req.body.message);
   var number = req.body.mobile;
   var apikey = 'eQd2legWgy8-rGnxk289ozJm0FIgTY1onkYsiWmMd2';
-
   var sender = 'TCTLCL';
   var data = 'apikey=' + apikey + '&sender=' + sender + '&numbers=' + number + '&message=' + msg
   var options = {
     host: 'api.textlocal.in',
     path: '/send?' + data
   };
-
   callback = function (response) {
     var str = '';
-
     //another chunk of data has been recieved, so append it to `str`
     response.on('data', function (chunk) {
       str += chunk;
@@ -288,10 +234,7 @@ router.post('/sendsms', [
       res.send(str);
     });
   }
-
   //console.log('hello js'))
   http.request(options, callback).end();
 });
-
-
 module.exports = router;
