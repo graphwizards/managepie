@@ -24659,6 +24659,9 @@ Floated Menu / Item
   border-bottom-width: 2px;
   -webkit-transition: color 0.1s ease;
   transition: color 0.1s ease;
+  -moz-transition: color 0.1s ease;
+  -ms-transition: color 0.1s ease;
+  -o-transition: color 0.1s ease;
 }
 
 /* Item Types */
@@ -24683,6 +24686,7 @@ Floated Menu / Item
 .ui.secondary.pointing.menu a.item:hover {
   background-color: transparent;
   color: rgba(0, 0, 0, 0.87);
+  border-color: #afafaf;
 }
 
 /* Pressed */
@@ -24700,15 +24704,15 @@ Floated Menu / Item
   background-color: transparent;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-color: #1B1C1D;
+  border-color: #F84500;
   font-weight: bold;
-  color: rgba(0, 0, 0, 0.95);
+  color: #000000;
 }
 
 /* Active Hover */
 
 .ui.secondary.pointing.menu .active.item:hover {
-  border-color: #1B1C1D;
+  border-color: #F84500;
   color: rgba(0, 0, 0, 0.95);
 }
 

@@ -110,6 +110,7 @@ passport.use('users', new LocalStrategy({ usernameField : 'email' },(email, pass
 // ////////////////////////////////////////////////////////////////////////// Routes
 const profileRouts = require('./users/profile');
 const courseRoutes = require('./users/course');
+const plan = require('../models/plan');
 
 router.use('/profile',checkUserAuthenticated, profileRouts);
 router.use('/courses', checkUserAuthenticated, courseRoutes);
@@ -150,8 +151,11 @@ router.get('/saveLogin', (req, res) => {
 
 
 router.get('/dashboard',checkUserAuthenticated, (req, res) => {
-  res.render('users/dashboard', {layout : dashboard_layout, title : req.user.instName + " | Managepie.com", user : req.user});
-   console.log(req.user);
+  plan.findOne({"name" : req.user.plan}, (err, planData)=>{
+    res.render('users/dashboard', {layout : dashboard_layout, title : req.user.instName + " | Managepie.com", user : req.user, plan : planData});
+    console.log(req.user);
+  })
+  
 });
 
 router.get('/logout', (req, res) => {

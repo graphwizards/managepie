@@ -14,7 +14,11 @@ router.use(bodyParser.urlencoded({
 }));
 
 router.get('/', (req, res) => {
-res.render('users/profile', { title : req.user.instName, layout : layout, user : req.user});
+  plan.findOne({"name" : req.user.plan}, (err, planData)=>{
+    if(err) throw err;
+    res.render('users/profile', { title : req.user.instName, layout : layout, user : req.user, plan : planData});
+
+  })
 });
  
  

@@ -1,19 +1,108 @@
 {{#if err}}
-    <div class="ui red message"><i class="icon close"></i>
+<div class="ui red message"><i class="icon close"></i>
     {{error}}
-    </div>
+</div>
 {{/if}}
 {{#if success}}
-    <div class="ui green message"><i class="icon close"></i>
+<div class="ui green message"><i class="icon close"></i>
     {{success}}
-    </div>
+</div>
 {{/if}}
+{{!--  --}}
+
+
+<div class="ui segment  ">
+    <div class="ui secondary pointing top menu">
+        <a class="item active" data-tab="courses">
+            All Courses
+        </a>
+        <a  class="item " data-tab="subjects">
+            Subjects
+        </a>
+
+        <a class="item" data-tab="notes">
+            Notes
+        </a>
+
+        <div class="right menu">
+
+            <a class="item" data-tab="create">
+                <i class="icon plus"></i> Create Course
+            </a>
+        </div>
+
+    </div>
+
+    {{!--  --}}
+
+
+    <div class="ui basic segment active tab" data-tab="courses">
+        <table class="ui celled striped table">
+  <thead>
+    <tr><th colspan="5">
+      Courses
+    </th>
+  </tr></thead>
+  <tbody>
+     {{#each courses as |courses|}}
+
+          <tr>
+      <td class="collapsing">
+        <div class="ui small header"> {{this.name}}</div>
+      </td>
+      <td class="center aligned collapsing positive cell">
+          {{#if isActive}}
+          <i class="icon green check"></i> Active
+          {{/if}}
+      </td>
+      <td> {{this.description}} </td>
+      
+      <td class="right aligned collapsing"> {{this.createDate}} </td>
+      <td class="right aligned collapsing"> <div class="ui   pointing dropdown">
+          Action <i class="icon dropdown"></i>
+          <div class="menu">
+              <a href="/users/courses/edit/{{this.id}}" class="item">Edit</a>
+              
+              <a href="/users/courses/delete/{{this.id}}" class="item">Delete</a>
+          </div>
+      </div>  </td>
+    </tr>
+     {{/each}}
+   
+  
+   
+   
+  </tbody>
+</table>
+    </div>
+    {{!-- Subjects --}}
+    <div class="ui basic segment   tab" data-tab="subjects">
+
+    </div>
+    {{!-- Notes --}}
+    <div class="ui basic segment   tab" data-tab="notes">
+
+    </div>
+    {{!-- Create --}}
+    <div class="ui basic segment   tab" data-tab="create">
+
+    </div>
+</div>
+
+
+
+{{!--  --}}
+
+
 <div class="ui  stackable grid padded">
     <div class="ui ten wide column">
         <div class="ui segment">
             <div class="ui orange ribbon label">My Courses</div>
             <div class="ui divider"></div>
-            {{courses}}
+            {{#if courses}}
+
+            {{else}}
+            {{/if}}
         </div>
     </div>
 
@@ -30,10 +119,11 @@
                 </div>
                 <div class="ui field">
                     <label for="description">Description</label>
-                    <textarea name="description" id="description" cols="30" rows="4" placeholder="Enter course description"></textarea>
+                    <textarea name="description" id="description" cols="30" rows="4"
+                        placeholder="Enter course description"></textarea>
 
                 </div>
-                <div class="ui orange fluid button" type="submit">Create</div>
+                <button class="ui orange fluid button" type="submit">Create</button>
             </form>
         </div>
     </div>
