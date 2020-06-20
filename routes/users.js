@@ -110,10 +110,12 @@ passport.use('users', new LocalStrategy({ usernameField : 'email' },(email, pass
 // ////////////////////////////////////////////////////////////////////////// Routes
 const profileRouts = require('./users/profile');
 const courseRoutes = require('./users/course');
+const packagesRouter = require('./users/packages');
 const plan = require('../models/plan');
 
 router.use('/profile',checkUserAuthenticated, profileRouts);
 router.use('/courses', checkUserAuthenticated, courseRoutes);
+router.use('/packages', checkUserAuthenticated, packagesRouter);
 
 
 /* GET users listing. */

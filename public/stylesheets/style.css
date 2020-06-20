@@ -6,7 +6,7 @@
     --secondary-color : #EEFAFB;
     --dark-color : #000000;
     --primary-dark : #D45200;
-    --light-color : #fffdfd;
+    --light-color : #f2f2f2f2;
     --primary-light : #FBF8EE;
 }
 
@@ -14,7 +14,9 @@
     background-color: var(--primary-color) !important;
   }
  
-
+.text-italic{
+    font-style: italic;
+}
 .primary-link{
     color: var(--primary-color) !important;
 }
@@ -36,7 +38,7 @@
     color: #ffff !important;
 }
 .bg-light{
-    background-color: #f2f2f2 !important ;
+    background-color: #f8f8f8 !important ;
 }
 
 .bg-primary-light{

@@ -1,0 +1,128 @@
+{{#if error}}
+<div class="ui red message">
+    <i class="icon close"></i>
+    {{error}}
+</div>
+
+{{/if}}
+{{#if success}}
+<div class="ui green message">
+    <i class="icon close"></i>
+    {{success}}
+</div>
+{{/if}}
+<div class="ui basic segment">
+    <div class="ui   stackable grid  ">
+        <div class="ui eleven wide column">
+            {{#each packages as |packages|}}
+            <div class="ui segment">
+                <div class="ui    stackable grid">
+                    <div class="ui middle aligned three wide column">
+                        <div class="ui  tiny orange  header">
+                            {{this.name}}
+                        </div>
+
+
+                    </div>
+
+                    {{!--  --}}
+
+                    <div class="ui two wide column">
+                        <div class="ui tiny orange header mb-1">Cost</div>
+                        <div class="ui grey sub header m-0">₹{{this.cost}}</div>
+                    </div>
+                    <div class="ui two wide column">
+                        <div class="ui tiny orange header mb-1">Duration</div>
+                        <div class="ui grey sub header m-0">
+                            {{this.duration}} {{this.durationPeriod}}
+                        </div>
+
+                    </div>
+                    <div class="ui eight wide column">
+                        <div class="ui tiny orange header mb-1">Description</div>
+                        <div class="ui grey   text-italic  text-black-50 m-0">
+                            {{this.description}}
+                        </div>
+                    </div>
+                    <div class="ui one wide right  aligned column">
+                        <div class="ui  right  pointing dropdown">
+                            <i class="ellipsis vertical icon"></i>
+                            <div class="ui menu">
+                                <a href="#" class="item">Edit</a>
+                                <a href="/users/packages/delete/{{this.id}}" class="item">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {{/each}}
+
+
+
+
+        </div>
+        <div class="ui five wide column">
+            <div class="ui segment w-100">
+                <div class="ui header">Create New Package</div>
+                <div class="ui divider"></div>
+                <form action="/users/packages" class="ui form" method="POST">
+                    <div class="ui field">
+                        <label for="course">Choose Course</label>
+                        <select name="course" id="course" class="ui search dropdown">
+                            <option value="">--Choose Course--</option>
+                            {{#each courses as |courses|}}
+                            <option value="{{this.id}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="ui field">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Enter oackage name">
+                    </div>
+                    <div class="ui field">
+                        <label for="cost">Cost</label>
+                        <div class="ui labeled input">
+                            <div class="ui label">
+                                ₹
+                            </div>
+                            <input type="number" name="cost" placeholder="Enter package cost">
+                        </div>
+
+                    </div>
+                    <div class="ui field">
+                        <div class="inline field">
+                            <div class="ui toggle checkbox" id="setDuration">
+                                <input type="checkbox" tabindex="0" name="setDuration" class="hidden">
+                                <label>Set Duration</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field d-none  " id="durationFields">
+                        <label>Duration</label>
+                        <div class="two fields">
+                            <div class="field">
+                                <input type="number" name="duration" placeholder="" value="1">
+                            </div>
+                            <div class="  field">
+                                <select name="durationPeriod" id="durationPeriod" class="ui compact dropdown">
+                                    <option value="days">Days</option>
+                                    <option value="week">Week</option>
+                                    <option selected value="month">Month</option>
+                                    <option value="year">Year</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui field">
+                        <label for="description">Short Note</label>
+                        <textarea name="description" id="description" cols="30" rows="4"> </textarea>
+                    </div>
+                    <button class="ui orange fluid button">Create</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>

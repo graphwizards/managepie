@@ -29,3 +29,7 @@ $('.message .close')
     ;
   })
 ;
+
+$("#setDuration").click(function (){
+  $("#durationFields").toggleClass('d-none');
+})

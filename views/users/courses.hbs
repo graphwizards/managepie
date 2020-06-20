@@ -24,12 +24,9 @@
             Notes
         </a>
 
-        <div class="right menu">
-
-            <a class="item" data-tab="create">
-                <i class="icon plus"></i> Create Course
-            </a>
-        </div>
+ 
+ 
+       
 
     </div>
 
@@ -37,7 +34,9 @@
 
 
     <div class="ui basic segment active tab" data-tab="courses">
-        <table class="ui celled striped table">
+        <div class="ui stackable divided grid">
+<div class="ui twelve wide column">
+           <table class="ui celled striped table">
   <thead>
     <tr><th colspan="5">
       Courses
@@ -74,10 +73,100 @@
    
   </tbody>
 </table>
+
+</div>
+
+{{!--  --}}
+<div class="four wide column">
+    <div class="ui header">Create New Course</div>
+       <form action="/users/courses" method="POST" class="ui   form">
+                <div class="ui field">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" required placeholder="Enter course name">
+                </div>
+                <div class="ui field">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" required cols="30" rows="4"
+                        placeholder="Enter course description"></textarea>
+
+                </div>
+                <button class="ui orange fluid button" type="submit">Create</button>
+            </form>
+</div>
+        </div>
+ 
     </div>
     {{!-- Subjects --}}
     <div class="ui basic segment   tab" data-tab="subjects">
-
+<div class="ui stackable divided grid">
+    <div class="ui twelve wide column">
+   
+     {{#each courses as |courses|}}
+ <table class="ui celled striped table">
+  <thead>
+    <tr><th colspan="5">
+      {{this.name}}
+    </th>
+  </tr></thead>
+  <tbody>
+      {{#each this.subjects }}
+                <tr>
+      <td class="collapsing">
+        <div class="ui small header"> {{this.name}}</div>
+      </td>
+      <td class="center aligned collapsing positive cell">
+          {{#if isActive}}
+          <i class="icon green check"></i> Active
+          {{/if}}
+      </td>
+      <td> {{this.description}} </td>
+      
+      <td class="right aligned collapsing"> {{this.createDate}} </td>
+      <td class="right aligned collapsing"> <div class="ui   pointing dropdown">
+          Action <i class="icon dropdown"></i>
+          <div class="menu">
+              <a href="/users/courses/edit/{{this.id}}" class="item">Edit</a>
+              
+              <a href="/users/courses/delete/{{this.id}}" class="item">Delete</a>
+          </div>
+      </div>  </td>
+    </tr>
+      {{/each}}
+    
+      
+   
+  </tbody>
+</table>
+     {{/each}}
+   
+  
+ 
+    </div>
+    <div class="ui four wide column">
+        <div class="ui header">Create Subject</div>
+        <form action="/users/courses/createSubject" method="POST" class="ui fluid form w-100">
+            <div class="ui fluid field">
+                <label for="subject">Choose Course</label>
+                <select name="course" id="course" class="ui search dropdown">
+                    <option value="">--Choose Course --</option>
+                    {{#each courses as |courses|}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                        
+                    {{/each}}
+                </select>
+            </div>
+            <div class="ui field">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="Enter Subject Name">
+            </div>
+            <div class="ui field">
+                <label for="description">Short Description</label>
+                <textarea name="description" id="description" cols="30" rows="4" placeholder="Enter short description"></textarea>
+            </div>
+            <button class="ui fluid orange button">Create</button>
+        </form>
+    </div>
+</div>
     </div>
     {{!-- Notes --}}
     <div class="ui basic segment   tab" data-tab="notes">
@@ -93,38 +182,4 @@
 
 {{!--  --}}
 
-
-<div class="ui  stackable grid padded">
-    <div class="ui ten wide column">
-        <div class="ui segment">
-            <div class="ui orange ribbon label">My Courses</div>
-            <div class="ui divider"></div>
-            {{#if courses}}
-
-            {{else}}
-            {{/if}}
-        </div>
-    </div>
-
-
-    {{!-- upload courses --}}
-    <div class="ui six wide column">
-        <div class="ui segment">
-            <div class="ui orange ribbon label">Create Courses</div>
-            <div class="ui divider"></div>
-            <form action="/users/courses" method="POST" class="ui form">
-                <div class="ui field">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Enter course name">
-                </div>
-                <div class="ui field">
-                    <label for="description">Description</label>
-                    <textarea name="description" id="description" cols="30" rows="4"
-                        placeholder="Enter course description"></textarea>
-
-                </div>
-                <button class="ui orange fluid button" type="submit">Create</button>
-            </form>
-        </div>
-    </div>
-</div>
+ 
